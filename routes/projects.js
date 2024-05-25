@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const router = express.Router();
 
 // MySQL connection
@@ -20,10 +20,10 @@ db.connect(err => {
 
 // GET all projects
 router.get('/', (req, res) => {
-  const sql = 'SELECT * FROM projects';
+  const sql = 'SELECT id, ProjectName, Progress FROM project';
   db.query(sql, (err, results) => {
     if (err) {
-      res.status(500).json({ error: err });
+      res.status(500).json({ error: err.message });
     } else {
       res.json(results);
     }

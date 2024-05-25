@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import './Menu.css';
+import './Header.css';
+import { Link } from 'react-router-dom';
 
-function Menu() {
+function Header() {
   useEffect(() => {
     const toggle = document.querySelector('.toggle');
     const nav = document.querySelector('nav');
@@ -11,12 +12,13 @@ function Menu() {
   }, []);
 
   return (
-    <div className="Menu">
+    <div className="Header">
       <div className="header">
         <div className="toggle">
           <i className="fas fa-bars"></i>
         </div>
         <nav>
+        <li><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>
           <ul className="main-menu">
             <li><a id="now" href="trang_chu.html">Dashboard</a></li>
             <li className="submenu">
@@ -57,4 +59,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default Header;

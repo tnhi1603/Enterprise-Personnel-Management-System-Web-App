@@ -4,6 +4,7 @@
     padding: 20px;
     width: 200px;
     text-align: center;
+    transition: transform 0.2s;
   }
   
   .project-card.red {
@@ -27,5 +28,8 @@
     justify-content: center;
     align-items: center;
     border: 2px solid #ccc;
+  }
+  .project-card:hover {
+    transform: scale(1.05);
   }
   
