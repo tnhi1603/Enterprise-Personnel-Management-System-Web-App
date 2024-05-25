@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .header {
+    padding: 10px;
+    background-color: #717D99;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #now {
+    background-color: #BED7DC;
+    color: #003C43;
+    border: 1px solid #003C43;
+    border-radius: 30px;
+  }
+  
+  /* Chỉnh sửa căn lề cho logo */
+  .header img {
+    margin: 10px 0;
+  }
+  
+  /* Thiết kế icon menu bar */
+  .toggle {
+    display: none;
+    color: #003C43;
+    text-align: right;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  /* Chỉnh sửa căn lề và viền để menu gọn và đẹp */
+  .main-menu {
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  /* Thiết lập để các phần tử trong thanh menu nằm cùng một hàng ngang */
+  .main-menu li {
+    display: inline-block;
+  }
+  
+  /* Định dạng cho chữ trên thanh menu */
+  .main-menu li a {
+    display: block;
+    height: 100%;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+  }
+  
+  /* Cài đặt hiệu ứng khi trỏ chuột vào chữ trên thanh menu */
+  .main-menu li a:hover {
+    color: #003C43;
+    border: 1px solid #003C43;
+    border-radius: 30px;
+    transition: all 0.2s;
+  }
+  
+  /* Cài đặt hiệu ứng extend khi trỏ chuột vào menu mở sub-menu */
+  .main-menu li:hover > ul {
+    display: block;
+    border: 1px solid gray;
+    box-shadow: 0 0 8px dimgray;
+    background-color: #BED7DC;
+    padding: 10px;
+  }
+  
+  /* Chỉnh sửa sub-menu */
+  .main-menu ul {
+    display: none;
+    position: absolute;
+    background-color: aqua;
+    border-radius: 10px;
+    z-index: 1;
+  }
+  
+  .main-menu ul li {
+    display: block;
+  }
+  
+  /* Định dạng cho chữ trên sub-menu */
+  .main-menu ul li a {
+    padding: 10px 10px;
+  }
+  
+  /* Điều chỉnh kích thước thanh menu cho thiết bị kích thước nhỏ */
+  @media screen and (max-width: 768px) {
+    .header {
+      padding: 10px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .main-menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .toggle {
+      display: block;
+    }
+    nav {
+      display: none;
+      width: 100%;
+    }
+    nav.active {
+      display: block;
+    }
+    .main-menu li {
+      display: block;
+      width: 100%;
+    }
+    .main-menu li a {
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
