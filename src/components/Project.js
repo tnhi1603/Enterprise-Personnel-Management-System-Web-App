@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard.js';
 import Header from './Header.js';
+import Footer from './Footer.js';
 import './Project.css'; 
-import './Header.css';
 import axios from 'axios';
-
-// const projects = [
-//   { name: 'ProjectName', department: 'Department', progress: 50, color: 'red' },
-//   { name: 'ProjectName', department: 'Department', progress: 75, color: 'green' },
-//   { name: 'ProjectName', department: 'Department', progress: 50, color: 'orange' },
-//   { name: 'ProjectName', department: 'Department', progress: 50, color: 'orange' },
-//   { name: 'ProjectName', department: 'Department', progress: 50, color: 'orange' },
-//   { name: 'ProjectName', department: 'Department', progress: 50, color: 'orange' }
-// ];
 
 function Project() {
   const [projects, setProjects] = useState([]);
@@ -37,6 +28,7 @@ function Project() {
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
+      <div className="footer"><Footer /></div>
     </div>
   );
 }

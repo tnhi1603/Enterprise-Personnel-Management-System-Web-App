@@ -1,0 +1,59 @@
+.interaction-page {
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: calc(100% - 100px); /* Subtracting 50px on each side */
+    box-sizing: border-box; /* Ensuring padding/margin included in width */
+  }
+  
+  .post {
+    width: 100%;
+    max-width: 600px; /* Limit the maximum width of a post */
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* Ensuring padding/margin included in width */
+  }
+  
+  .post h3 {
+    margin: 0 0 8px;
+  }
+  
+  .post button {
+    margin-top: 8px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    padding: 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  

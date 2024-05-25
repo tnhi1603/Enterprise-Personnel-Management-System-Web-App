@@ -1,57 +1,51 @@
 import React, { useEffect } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
+
+  const location = useLocation();
+
   useEffect(() => {
     const toggle = document.querySelector('.toggle');
     const nav = document.querySelector('nav');
     toggle.addEventListener('click', () => {
       nav.classList.toggle('active');
     });
+    return () => {
+      toggle.removeEventListener('click', () => {
+        nav.classList.toggle('active');
+      });
+    };
   }, []);
+
+  const getActiveClass = (path) => {
+    return location.pathname === path ? 'now' : '';
+  };
 
   return (
     <div className="Header">
       <div className="header">
         <div className="toggle">
           <i className="fas fa-bars"></i>
-        </div>
+         </div>
         <nav>
-        <li><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>
           <ul className="main-menu">
-            <li><a id="now" href="trang_chu.html">Dashboard</a></li>
-            <li className="submenu">
-              <a href="qly_nhan_vien.html">Quản lý nhân viên </a>
+            <li className={getActiveClass('/')}><a href="/">DASHBOARD</a></li>
+            <li className={`submenu ${getActiveClass('/')}`}>
+              <a href="/">QUẢN LÝ</a>
               <ul>
-                <li>
-                  <a href="qly_du_an.html">Quản lý dự án</a>
-                </li>
-                <li>
-                  <a href="quản lý chấm công.html">Quản lý chấm công</a>
-                </li>
-                <li>
-                  <a href="qly_thong_bao.html">Tài liệu - Ấn phẩm</a>
-                </li>
-                <li>
-                  <a href="/src/gioi_thieu_ttpb.html">Thông tin các phòng ban</a>
-                </li>
-                <li><a href="/src/gioi_thieu_sd.html">Sơ đồ thư viện</a></li>
+                <li><Link to="/">Quản lý dự án</Link></li>
+                <li><Link to="/">Quản lý chấm công</Link></li>
+                <li><Link to="/">Quản lý nhân viên</Link></li>
               </ul>
             </li>
-            <li><a href="/src/muon_sach.html">Mượn sách</a></li>
-            <li className="submenu">
-              <a href="/src/">Liên hệ</a>
-            </li>
-            <li>
-              <a href="/src/"><i className="fas fa-cog"></i></a>
-            </li>
-            <li>
-              <a href="/src/"><i className="fas fa-bell"></i></a>
-            </li>
-            <li>
-              <a href="#" id="userLink"><i className="fas fa-user"></i></a>
-            </li>
+            <li className={getActiveClass('/requests')}><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>
+            <li className={getActiveClass('/interactions')}><Link to="/interactions">TƯƠNG TÁC</Link></li>
+            <li className={getActiveClass('/')}><Link to="/calendar">LỊCH</Link></li>
+            <li><Link to="/"><i className="fas fa-cog"></i></Link></li>
+            <li><Link to="/"><i className="fas fa-bell"></i></Link></li>
+            <li className={getActiveClass('/login')}><Link to="/login"><i className="fas fa-user"></i></Link></li>
           </ul>
         </nav>
       </div>

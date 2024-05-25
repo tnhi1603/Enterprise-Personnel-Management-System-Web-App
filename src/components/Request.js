@@ -2,19 +2,13 @@ import React from 'react';
 import './Request.css';
 import './Footer.css';
 import './Header.css';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
 function Requests() {
   return (
     <div className="requests">
-      <nav>
-        <ul className="header">
-          <li><a href="/">DASHBOARD</a></li>
-          <li><a href="/requests" className="active">YÊU CẦU ĐANG CHỜ XỬ LÝ</a></li>
-          <li><a href="#">QUẢN LÝ</a></li>
-          <li><a href="#">TƯƠNG TÁC</a></li>
-          <li><a href="#">LỊCH</a></li>
-        </ul>
-      </nav>
+    <div><Header /></div>
       <div className="request-content">
         <div className="request-list">
           <h3>Danh sách yêu cầu</h3>
@@ -39,11 +33,7 @@ function Requests() {
           </div>
         </div>
       </div>
-      <div className="footer">
-        <h3>HUMAN RESOURCES</h3>
-        <p>Địa chỉ: Linh Trung, Thành phố Thủ Đức, Thành phố Hồ Chí Minh</p>
-        <p>Fax: Facebook: Email: Hotline:</p>
-      </div>
+      <div><Footer /></div>
     </div>
   );
 }

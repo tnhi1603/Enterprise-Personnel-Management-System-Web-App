@@ -3,11 +3,10 @@ import './ProjectCard.css'; // Import CSS for project card-specific styles
 
 function ProjectCard({ project }) {
   return (
-    <div className={`project-card ${project.color}`}>
-      <h3>{project.name}</h3>
-      <p>{project.department}</p>
+    <div className={"project-card"}>
+      <h3>{project.ProjectName}</h3>
       <div className="progress-circle">
-        <span>{project.progress}%</span>
+        <span>{project.Progress}%</span>
       </div>
       <button>More</button>
     </div>

@@ -1,0 +1,43 @@
+.post {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 0; /* Removed margin to prevent extra space */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 100%; /* Make the post take full width of its grid cell */
+    box-sizing: border-box;
+  }
+  
+  .post h3 {
+    margin: 0 0 8px;
+  }
+  
+  .post button {
+    margin-top: 8px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input[type="text"] {
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button[type="submit"] {
+    padding: 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  

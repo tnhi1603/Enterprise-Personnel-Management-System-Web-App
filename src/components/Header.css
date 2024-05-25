@@ -11,9 +11,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
   }
   
-  #now {
+  .main-menu li#now a {
     background-color: #BED7DC;
     color: #003C43;
     border: 1px solid #003C43;
