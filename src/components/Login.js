@@ -4,6 +4,7 @@ import './Form.css';
 import Header from './Header.js';
 import Footer from './Footer.js';
 
+
 function Login() {
   return (
     <div className="login">
@@ -13,7 +14,7 @@ function Login() {
       <form>
         <label>
           Email:
-          <input type="email" name="email" />
+          <input type="text" name="email" />
         </label>
         <label>
           Password:

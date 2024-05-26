@@ -1,7 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
 const projectRoutes = require('./routes/projects');
+const loginRoutes = require('./routes/login'); 
 // const departmentRoutes = require('./routes/department');
 // const staffRoutes = require('./routes/staff');
 // const postRoutes = require('./routes/post');
@@ -13,11 +15,12 @@ const projectRoutes = require('./routes/projects');
 // const checkinRoutes = require('./routes/checkin');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/projects', projectRoutes);
+app.use('/api/login', loginRoutes); 
 // app.use('/api/departments', departmentRoutes);
 
 // app.use('/api/staff', staffRoutes);
