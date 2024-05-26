@@ -11,22 +11,22 @@ function Register() {
     <div className="form-container">
       <h2>ĐĂNG KÝ</h2>
       <form>
-        <label>
-          Username:
-          <input type="text" name="username" />
-        </label>
-        <label>
-          Email:
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" />
-        </label>
-        <label>
-          Retype Password:
-          <input type="password" name="retype-password" />
-        </label>
+        <div className="form-group">
+        <label>Username: </label>
+        <input type="text" name="username" />
+        </div>
+        <div className="form-group">
+        <label>Email: </label>
+        <input type="email" name="email" />
+        </div>
+        <div className="form-group">
+        <label>Password: </label>
+        <input type="password" name="password" />
+        </div>
+        <div className="form-group">
+        <label>Retype Password: </label>
+        <input type="password" name="retype-password" />
+        </div>
         <button type="submit">Đăng ký</button>
       </form>
       <Link to="/login">Đã có tài khoản? Đăng nhập</Link>

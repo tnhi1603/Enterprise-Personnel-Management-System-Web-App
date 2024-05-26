@@ -9,13 +9,14 @@ function Header() {
   useEffect(() => {
     const toggle = document.querySelector('.toggle');
     const nav = document.querySelector('nav');
-    toggle.addEventListener('click', () => {
+    const handleToggle = () => {
       nav.classList.toggle('active');
-    });
+    };
+    
+    toggle.addEventListener('click', handleToggle);
+    
     return () => {
-      toggle.removeEventListener('click', () => {
-        nav.classList.toggle('active');
-      });
+      toggle.removeEventListener('click', handleToggle);
     };
   }, []);
 
@@ -28,7 +29,7 @@ function Header() {
       <div className="header">
         <div className="toggle">
           <i className="fas fa-bars"></i>
-         </div>
+        </div>
         <nav>
           <ul className="main-menu">
             <li className={getActiveClass('/')}><a href="/">DASHBOARD</a></li>
@@ -42,7 +43,7 @@ function Header() {
             </li>
             <li className={getActiveClass('/requests')}><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>
             <li className={getActiveClass('/interactions')}><Link to="/interactions">TƯƠNG TÁC</Link></li>
-            <li className={getActiveClass('/')}><Link to="/calendar">LỊCH</Link></li>
+            <li className={getActiveClass('/calendar')}><Link to="/calendar">LỊCH</Link></li>
             <li><Link to="/"><i className="fas fa-cog"></i></Link></li>
             <li><Link to="/"><i className="fas fa-bell"></i></Link></li>
             <li className={getActiveClass('/login')}><Link to="/login"><i className="fas fa-user"></i></Link></li>

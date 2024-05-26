@@ -98,6 +98,28 @@
     padding: 10px 10px;
   }
   
+.main-menu > li {
+  margin: 0.5em 0;
+}
+
+.main-menu > li > a {
+  text-decoration: none;
+  color: #000;
+}
+
+.main-menu > li.submenu ul {
+  display: none;
+}
+
+.main-menu > li.submenu:hover ul {
+  display: block;
+}
+
+.main-menu > li.now > a {
+  font-weight: bold;
+  color: blue;
+}
+
   /* Điều chỉnh kích thước thanh menu cho thiết bị kích thước nhỏ */
   @media screen and (max-width: 768px) {
     .header {

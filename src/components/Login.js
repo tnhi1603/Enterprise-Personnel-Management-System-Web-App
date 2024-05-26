@@ -12,14 +12,14 @@ function Login() {
     <div className="form-container">
       <h2>ĐĂNG NHẬP</h2>
       <form>
-        <label>
-          Email:
-          <input type="text" name="email" />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" />
-        </label>
+        <div className="form-group">
+        <label>Email: </label>
+        <input type="text" name="email" />
+        </div>
+        <div className="form-group">
+        <label>Password: </label>
+        <input type="password" name="password" />
+        </div>
         <button type="submit">ĐĂNG NHẬP</button>
       </form>
       <Link to="/register">Đăng ký</Link>

@@ -8,10 +8,25 @@
     box-sizing: border-box;
   }
   
-  .post h3 {
-    margin: 0 0 8px;
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
   }
   
+  .post-author {
+    font-weight: bold;
+  }
+  
+  .post-timestamp {
+    color: #888;
+    font-size: 0.9em;
+  }
+  
+  .post-content {
+    margin-top: 5px;
+    text-align: left;
+  }
   .post button {
     margin-top: 8px;
   }

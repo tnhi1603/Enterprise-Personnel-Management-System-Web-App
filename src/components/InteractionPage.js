@@ -10,31 +10,62 @@ const initialPosts = [
     author: 'User 1',
     content: 'This is the first post',
     likes: 0,
-    comments: []
+    comments: [],
+    timestamp: new Date().toLocaleString()
   },
   {
     id: 2,
     author: 'User 2',
     content: 'This is the second post',
     likes: 0,
-    comments: []
+    comments: [],
+    timestamp: new Date().toLocaleString()
   }
 ];
 
 function InteractionPage() {
   const [posts, setPosts] = useState(initialPosts);
+  const [newPostContent, setNewPostContent] = useState('');
+
+  const handlePostContentChange = (e) => {
+    setNewPostContent(e.target.value);
+  };
+
+  const handlePostSubmit = (e) => {
+    e.preventDefault();
+    if (newPostContent.trim()) {
+      const newPost = {
+        id: posts.length + 1,
+        author: 'New User', // This can be dynamic based on actual logged-in user data
+        content: newPostContent,
+        likes: 0,
+        comments: [],
+        timestamp: new Date().toLocaleString()
+      };
+      setPosts([...posts, newPost]);
+      setNewPostContent('');
+    }
+  };
 
   return (
     <div className="page">
-    <div><Header /></div>
-    <div className="interaction-page">
-      <div className="posts">
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+      <div><Header /></div>
+      <div className="interaction-page">
+        <form onSubmit={handlePostSubmit} className="post-form">
+          <textarea
+            value={newPostContent}
+            onChange={handlePostContentChange}
+            placeholder="Write your post here..."
+          />
+          <button type="submit">Post</button>
+        </form>
+        <div className="posts">
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </div>
       </div>
-    </div>
-    <div><Footer /></div>
+      <div><Footer /></div>
     </div>
   );
 }

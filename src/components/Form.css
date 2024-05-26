@@ -1,24 +1,35 @@
 .form-container {
-    max-width: 400px;
+    max-width: 80%;
+    width: 800px;
     margin: auto;
-    padding: 2em;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: #f9f9f9;
+    margin-top: 20px;
   }
   
   form {
+    padding: 20px;
     display: flex;
     flex-direction: column;
   }
-  
-  label {
+
+  .form-group {
+    display: flex;
+    align-items: center;
     margin-bottom: 1em;
   }
   
+  label {
+    flex: 0 0 40%; 
+    margin-right: 10px;
+    text-align: right; 
+  }
+  
   input {
+    flex: 1 0 60%; 
     padding: 0.5em;
-    margin-top: 0.5em;
     border: 1px solid #ccc;
     border-radius: 4px;
   }

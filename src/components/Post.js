@@ -25,8 +25,13 @@ function Post({ post }) {
 
   return (
     <div className="post">
-      <h3>{post.author}</h3>
-      <p>{post.content}</p>
+      <div className="post-header">
+        <span className="post-author">{post.author}</span>
+        <span className="post-timestamp">{post.timestamp}</span>
+      </div>
+      <div className="post-content">
+        {post.content}
+      </div>
       <button onClick={handleLike}>Like ({likes})</button>
       <form onSubmit={handleCommentSubmit}>
         <input
