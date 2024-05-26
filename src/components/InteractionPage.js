@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Post from './Post';
-import Header from './Header.js';
-import Footer from './Footer.js';
+import Header from './Header';
+import Footer from './Footer';
 import './InteractionPage.css';
 
 const initialPosts = [
@@ -11,7 +11,7 @@ const initialPosts = [
     content: 'This is the first post',
     likes: 0,
     comments: [],
-    timestamp: new Date().toLocaleString()
+    timestamp: new Date().toLocaleString(),
   },
   {
     id: 2,
@@ -19,8 +19,8 @@ const initialPosts = [
     content: 'This is the second post',
     likes: 0,
     comments: [],
-    timestamp: new Date().toLocaleString()
-  }
+    timestamp: new Date().toLocaleString(),
+  },
 ];
 
 function InteractionPage() {
@@ -40,16 +40,16 @@ function InteractionPage() {
         content: newPostContent,
         likes: 0,
         comments: [],
-        timestamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString(),
       };
-      setPosts([...posts, newPost]);
+      setPosts([newPost, ...posts]); // Prepend the new post
       setNewPostContent('');
     }
   };
 
   return (
     <div className="page">
-      <div><Header /></div>
+      <Header />
       <div className="interaction-page">
         <form onSubmit={handlePostSubmit} className="post-form">
           <textarea
@@ -65,7 +65,7 @@ function InteractionPage() {
           ))}
         </div>
       </div>
-      <div><Footer /></div>
+      <Footer />
     </div>
   );
 }

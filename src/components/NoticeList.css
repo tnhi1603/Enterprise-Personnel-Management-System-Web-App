@@ -1,0 +1,12 @@
+.notice-list {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px;
+  }
+  
+  .list-title {
+    border-bottom: 2px solid blue;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }

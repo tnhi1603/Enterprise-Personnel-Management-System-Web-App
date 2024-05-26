@@ -1,16 +1,18 @@
 * {
     box-sizing: border-box;
   }
-  
-  .header {
-    padding: 10px;
+  .Head{
     background-color: #717D99;
-    box-shadow: 0px 0px 10px gray;
-    border-radius: 5px;
+  }
+  .header {
+    padding: 2px;
+    background-color: #717D99;
+    box-shadow: 0px 1px 0px 0px gray;
+    border-radius: 2px;
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
   }
   
@@ -23,7 +25,7 @@
   
   /* Chỉnh sửa căn lề cho logo */
   .header img {
-    margin: 10px 0;
+    margin: 5px 0;
   }
   
   /* Thiết kế icon menu bar */
@@ -120,6 +122,15 @@
   color: #003C43;
   background-color: #BED7DC;
   border-radius: 10px;
+}
+.image-container {
+  text-align: center; 
+}
+.image-container img {
+  margin-top: 5px;
+  width: 40px; 
+  height: auto; 
+
 }
 
   /* Điều chỉnh kích thước thanh menu cho thiết bị kích thước nhỏ */

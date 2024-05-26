@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Dashboard from './components/Dashboard'
 import Project from './components/Project';
 import Footer from './components/Footer';
 import Request from './components/Request';
@@ -25,7 +26,8 @@ function App() {
  <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Project />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/project" element={<Project />} />
           <Route path="/" element={<Header />} />
           <Route path="/" element={<Footer />} />
           <Route path="/requests" element={<Request />} />
@@ -34,7 +36,8 @@ function App() {
           <Route path="/interactions" element={<InteractionPage />} />
           <Route path="/calendar"
               element={<CalendarComponent tasks={tasks} onSelectDate={handleSelectDate} />}
-            />
+          />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

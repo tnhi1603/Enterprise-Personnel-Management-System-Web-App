@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import './Header.css';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../logo.png'; 
 
 function Header() {
-
   const location = useLocation();
 
   useEffect(() => {
@@ -25,18 +25,21 @@ function Header() {
   };
 
   return (
-    <div className="Header">
+      <div className="Head">
+        <div className="image-container">
+          <img src={logo} alt="Logo" /> {}
+        </div>
       <div className="header">
         <div className="toggle">
           <i className="fas fa-bars"></i>
         </div>
         <nav>
           <ul className="main-menu">
-            <li className={getActiveClass('/')}><a href="/">DASHBOARD</a></li>
-            <li className={`submenu ${getActiveClass('/')}`}>
-              <a href="/">QUẢN LÝ</a>
+            <li className={getActiveClass('/dashboard')}><Link to="/dashboard">DASHBOARD</Link></li>
+            <li className={`submenu ${getActiveClass('/project')}`}>
+              <Link to="/project">QUẢN LÝ</Link>
               <ul>
-                <li><Link to="/">Quản lý dự án</Link></li>
+                <li><Link to="/project">Quản lý dự án</Link></li>
                 <li><Link to="/">Quản lý chấm công</Link></li>
                 <li><Link to="/">Quản lý nhân viên</Link></li>
               </ul>
@@ -50,7 +53,7 @@ function Header() {
           </ul>
         </nav>
       </div>
-    </div>
+      </div>
   );
 }
 

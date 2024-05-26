@@ -19,16 +19,16 @@ function Project() {
   }, []);
 
   return (
+    <div className="page">
+    <div><Header /></div>
     <div className="project">
-      <div className="header">
-      <Header />
-      </div>
       <div className="project-list">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-      <div className="footer"><Footer /></div>
+    </div>
+    <div><Footer /></div>
     </div>
   );
 }

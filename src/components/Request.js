@@ -7,8 +7,9 @@ import Footer from './Footer.js';
 
 function Requests() {
   return (
-    <div className="requests">
+    <div className="page">
     <div><Header /></div>
+    <div className="requests">
       <div className="request-content">
         <div className="request-list">
           <h3>Danh sách yêu cầu</h3>
@@ -33,7 +34,8 @@ function Requests() {
           </div>
         </div>
       </div>
-      <div><Footer /></div>
+    </div>
+    <div><Footer /></div>
     </div>
   );
 }
