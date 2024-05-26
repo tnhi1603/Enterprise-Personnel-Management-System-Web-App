@@ -2,10 +2,20 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
-    width: 200px;
+    width: 300px;
     text-align: center;
     transition: transform 0.2s;
   }
+
+  .project-card h3 {
+    margin-top: 0;
+  }
+  
+  .project-details {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  }  
   
   .project-card.red {
     border-color: red;
@@ -22,14 +32,24 @@
   .progress-circle {
     margin: 20px 0;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid #ccc;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 16px;
   }
   .project-card:hover {
     transform: scale(1.05);
   }
-  
+  .date-range {
+  font-size: 15px;
+  color: #555;
+  }
+
+  .date-range p {
+    margin: 4px 0;
+  }

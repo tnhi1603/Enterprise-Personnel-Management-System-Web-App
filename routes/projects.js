@@ -5,7 +5,7 @@ const db = require('../db');
 
 // GET all projects
 router.get('/', (req, res) => {
-  const sql = 'SELECT ProjectID, ProjectName, Progress FROM Project';
+  const sql = 'SELECT ProjectID, ProjectName, Progress, StartDay, EndDay FROM Project';
   db.query(sql, (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });

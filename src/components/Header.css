@@ -104,7 +104,7 @@
 
 .main-menu > li > a {
   text-decoration: none;
-  color: #000;
+  color: #fff;
 }
 
 .main-menu > li.submenu ul {
@@ -117,7 +117,9 @@
 
 .main-menu > li.now > a {
   font-weight: bold;
-  color: blue;
+  color: #003C43;
+  background-color: #BED7DC;
+  border-radius: 10px;
 }
 
   /* Điều chỉnh kích thước thanh menu cho thiết bị kích thước nhỏ */
@@ -147,8 +149,8 @@
       width: 100%;
     }
     .main-menu li a {
-      width: 100%;
-      text-align: left;
+      width: 90%;
+      text-align: center;
     }
   }
   
