@@ -41,7 +41,7 @@ function Header() {
               <ul>
                 <li><Link to="/project">Quản lý dự án</Link></li>
                 <li><Link to="/">Quản lý chấm công</Link></li>
-                <li><Link to="/">Quản lý nhân viên</Link></li>
+                <li><Link to="/employee">Quản lý nhân viên</Link></li>
               </ul>
             </li>
             <li className={getActiveClass('/requests')}><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>

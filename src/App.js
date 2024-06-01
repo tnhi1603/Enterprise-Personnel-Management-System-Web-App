@@ -9,12 +9,15 @@ import Login from './components/Login';
 import Register from './components/Register';
 import CalendarComponent from './components/CalendarComponent';
 import InteractionPage from './components/InteractionPage';
+import EmployeeList from './components/EmployeeList';
+import EmployeeDetails from './components/EmployeeDetails';
 import './App.css'; 
 
 function App() {
   const tasks = {
-    'Sun May 26 2024': ['Task 1', 'Task 2'],
-    'Tue May 28 2024': ['Task 3'],
+    'Sat Jun 15 2024': ['Deadline Project Beta', 'Task from Department BA'],
+    'Mon Jun 10 2024': ['Deadline Project Alpha'],
+    'Sun Jun 2 2024': ['Deadline Project Beta', 'Task from Department BA'],
   };
 
   const handleSelectDate = (date) => {
@@ -38,6 +41,8 @@ function App() {
               element={<CalendarComponent tasks={tasks} onSelectDate={handleSelectDate} />}
           />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/employee" element={<EmployeeList />} />
+          <Route path="/employee/:id" element={<EmployeeDetails />} />
         </Routes>
       </div>
     </Router>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import StatCard from './StatCard';
 import EventList from './EventList';
 import NoticeList from './NoticeList';
@@ -8,40 +9,59 @@ import './Dashboard.css';
 import { FaUsers, FaTasks } from 'react-icons/fa';
 import { MdOutlinePendingActions } from "react-icons/md";
 
-const mockEvents = [
-  { name: 'Event 1', date: '2024-05-01' },
-  { name: 'Event 2', date: '2024-05-02' },
-  { name: 'Event 3', date: '2024-05-03' },
-];
-
-const mockNotices = [
-  { title: 'Notice 1', date: '2024-05-01' },
-  { title: 'Notice 2', date: '2024-05-02' },
-  { title: 'Notice 3', date: '2024-05-03' },
-];
-
 function Dashboard() {
+  const [onlineMembers, setOnlineMembers] = useState(0);
+  const [activeProjects, setActiveProjects] = useState(0);
+  const [pendingRequests, setPendingRequests] = useState(0);
+  const [events, setEvents] = useState([]);
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const onlineMembersRes = axios.get('http://localhost:3001/api/dashboard/members/online');
+        setOnlineMembers(onlineMembersRes.data.onlineMembers);
+
+        const activeProjectsRes = axios.get('http://localhost:3001/api/dashboard/projects/active');
+        setActiveProjects(activeProjectsRes.data.activeProjects);
+
+        const pendingRequestsRes = await axios.get('http://localhost:3001/api/dashboard/requests/pending');
+        setPendingRequests(pendingRequestsRes.data.pendingRequests);
+
+        const eventsRes = axios.get('http://localhost:3001/api/dashboard/events');
+        setEvents(eventsRes.data);
+
+        const noticesRes = axios.get('http://localhost:3001/api/dashboard/notices');
+        setNotices(noticesRes.data);
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="page">
-    <div><Header /></div>
-    <div className="dashboard">
-      <div className="stats">
-        <StatCard count="00" label="Members" icon={<FaUsers />} />
-        <StatCard count="00" label="Projects" icon={<FaTasks />} />
-        <StatCard count="00" label="Requests" icon={<MdOutlinePendingActions />} />
-      </div>
-      <div className="lists">
-        <div className="list">
-          <h2>Events</h2>
-          <EventList events={mockEvents} />
+      <div><Header /></div>
+      <div className="dashboard">
+        <div className="stats">
+          <StatCard count={onlineMembers} label="Members" icon={<FaUsers />} />
+          <StatCard count={activeProjects} label="Projects" icon={<FaTasks />} />
+          <StatCard count={pendingRequests} label="Requests" icon={<MdOutlinePendingActions />} />
         </div>
-        <div className="list">
-          <h2>Notice</h2>
-          <NoticeList notices={mockNotices} />
+        <div className="lists">
+          <div className="list">
+            <h2>Events</h2>
+            <EventList events={events} />
+          </div>
+          <div className="list">
+            <h2>Notice</h2>
+            <NoticeList notices={notices} />
+          </div>
         </div>
       </div>
-    </div>
-    <div><Footer /></div>
+      <div><Footer /></div>
     </div>
   );
 }
