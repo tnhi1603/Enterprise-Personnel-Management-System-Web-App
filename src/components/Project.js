@@ -4,6 +4,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import './Project.css'; 
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Project() {
   const [projects, setProjects] = useState([]);
@@ -20,15 +21,21 @@ function Project() {
 
   return (
     <div className="page">
-    <div><Header /></div>
-    <div className="project">
-      <div className="project-list">
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      <Header />
+      <div className="project-container">
+        <div className="project-title">
+          <h1>Danh sách dự án</h1>
+          <Link to="/add_project" className="add-project-button">
+            Thêm Dự Án
+          </Link>
+        </div>
+        <div className="project-list">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
-    </div>
-    <div><Footer /></div>
+      <Footer />
     </div>
   );
 }

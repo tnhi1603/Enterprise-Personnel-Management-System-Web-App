@@ -6,6 +6,20 @@
   justify-content: center; /* Center align the grid items */
 }
 
+.project-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.project-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
 .project {
   max-width: 1200px;
   margin: 0 auto;
@@ -27,4 +41,18 @@
   .project-list {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.add-project-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.add-project-button:hover {
+  background-color: #218838;
 }

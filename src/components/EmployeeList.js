@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import styles from './Employee.css'; // Ensure CSS module is imported correctly
+import styles from './Employee.css'; 
 
 function EmployeeList() {
   const [employees, setEmployees] = useState([]);
@@ -31,7 +31,12 @@ function EmployeeList() {
     <div className={styles['employee-page']}>
       <Header />
       <div className={styles['employee-container']}>
-        <h1 className={styles['employee-title']}>Danh sách nhân viên</h1>
+        <div className={styles['employee-title']}>
+          <h1>Danh sách nhân viên</h1>
+          <Link to="/add_employee" className={styles['add-employee-button']}>
+            Thêm Nhân Viên
+          </Link>
+        </div>
         <input
           type="text"
           placeholder="Search by name, department, or project"
@@ -50,7 +55,7 @@ function EmployeeList() {
         </ul>
       </div>
       <Footer className={styles['employee-footer']} />
-      </div>
+    </div>
   );
 }
 

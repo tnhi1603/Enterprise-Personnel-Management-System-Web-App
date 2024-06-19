@@ -11,6 +11,8 @@ import CalendarComponent from './components/CalendarComponent';
 import InteractionPage from './components/InteractionPage';
 import EmployeeList from './components/EmployeeList';
 import EmployeeDetails from './components/EmployeeDetails';
+import AddEmployee from './components/AddEmployee';
+import AddProject from './components/AddProject';
 import './App.css'; 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/employee" element={<EmployeeList />} />
           <Route path="/employee/:id" element={<EmployeeDetails />} />
+          <Route path="/add_employee" element={<AddEmployee />} />
+          <Route path="/add_project" element={<AddProject />} />
         </Routes>
       </div>
     </Router>
