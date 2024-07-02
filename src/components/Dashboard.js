@@ -19,20 +19,16 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const onlineMembersRes = axios.get('http://localhost:3001/api/dashboard/members/online');
-        setOnlineMembers(onlineMembersRes.data.onlineMembers);
+        const [eventListRes, noticeListRes] = await Promise.all([
+          axios.get('http://localhost:3001/api/dashboard/events'),
+          axios.get('http://localhost:3001/api/dashboard/notices')
+        ]);
 
-        const activeProjectsRes = axios.get('http://localhost:3001/api/dashboard/projects/active');
-        setActiveProjects(activeProjectsRes.data.activeProjects);
-
-        const pendingRequestsRes = await axios.get('http://localhost:3001/api/dashboard/requests/pending');
-        setPendingRequests(pendingRequestsRes.data.pendingRequests);
-
-        const eventsRes = axios.get('http://localhost:3001/api/dashboard/events');
-        setEvents(eventsRes.data);
-
-        const noticesRes = axios.get('http://localhost:3001/api/dashboard/notices');
-        setNotices(noticesRes.data);
+        // setOnlineMembers(onlineMembersRes.data.onlineMembers);
+        // setActiveProjects(activeProjectsRes.data.activeProjects);
+        // setPendingRequests(pendingRequestsRes.data.pendingRequests);
+        setEvents(eventListRes.data);
+        setNotices(noticeListRes.data);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }

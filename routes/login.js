@@ -1,31 +1,35 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
-const mysql = require('mysql2');
-const jwt = require('jsonwebtoken');
 const router = express.Router();
 const db = require('../db');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-// Login route
+// POST login
 router.post('/', (req, res) => {
   const { username, password } = req.body;
-
-  // Find user by username
-  db.query('SELECT * FROM Login WHERE Username = ?', [username], async (err, results) => {
+  const sql = 'SELECT * FROM login WHERE Username = ?';
+  
+  db.query(sql, [username], (err, results) => {
     if (err) {
-      console.error('Error fetching user:', err.stack);
-      return res.status(500).send('Error fetching user');
+      return res.status(500).json({ error: err.message });
     }
+
     if (results.length === 0) {
-      return res.status(401).send('Invalid username or password');
+      return res.status(401).json({ error: 'Invalid username or password' });
     }
 
     const user = results[0];
 
-    // Compare password
-    const isMatch = await bcrypt.compare(password, user.Password);
-    if (!isMatch) {
-      return res.status(401).send('Invalid username or password');
+    // Check password
+    if (password !== user.Password) {
+      return res.status(401).json({ error: 'Invalid username or password' });
     }
+
+    // Generate JWT token
+    const token = jwt.sign({ id: user.LoginID }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    res.json({ token });
   });
 });
 

@@ -12,7 +12,6 @@ function EmployeeList() {
   useEffect(() => {
     axios.get('http://localhost:3001/api/employee')
       .then(response => {
-        // Ensure the data is an array
         const data = Array.isArray(response.data) ? response.data : [];
         setEmployees(data);
       })

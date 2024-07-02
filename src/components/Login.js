@@ -14,8 +14,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = axios.post('http://localhost:3001/api/login', { username, password });
-      // Assuming the token is returned in the response
+      const response = await axios.post('http://localhost:3001/api/login', { username, password });
       const { token } = response.data;
 
       // Save token to local storage or state management
@@ -30,7 +29,7 @@ function Login() {
 
   return (
     <div className="login">
-      <div><Header /></div>
+      <Header />
       <div className="form-container">
         <h2>ĐĂNG NHẬP</h2>
         {error && <p className="error">{error}</p>}
@@ -60,7 +59,7 @@ function Login() {
         <Link to="/register">Đăng ký</Link>
         <Link to="/forgot-password">Quên mật khẩu?</Link>
       </div>
-      <div><Footer /></div>
+      <Footer />
     </div>
   );
 }
