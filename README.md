@@ -6,6 +6,6 @@ Back-end: Javascript
 
 - Database: MySQL
 
-- API: Express, NodeJS, Google Cloud
+- API: Express, NodeJS
 
 - Deploy: 
