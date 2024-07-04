@@ -10,13 +10,14 @@ router.post('/add', (req, res) => {
   const departmentID = parseInt(DepartmentID, 10);
   const staffID = parseInt(StaffID, 10);
 
-  // Chuyển đổi định dạng ngày tháng từ dd/mm/yyyy sang yyyy-mm-dd hh:mm:ss
-  const formattedStartDate = startDate.split('/').reverse().join('-') + ' 00:00:00';
-  const formattedEndDate = endDate.split('/').reverse().join('-') + ' 00:00:00';
+  // Chuyển đổi ngày tháng từ format yyyy-mm-dd sang định dạng MySQL DATETIME
+  const formattedStartDate = new Date(StartDate).toISOString().slice(0, 16).replace('T', ' ');
+  const formattedEndDate = new Date(EndDate).toISOString().slice(0, 16).replace('T', ' ');
+
   // Insert new project into database
   const insertSql = `
-    INSERT INTO Project (ProjectName, DepartmentID, StaffID, StartDay, EndDay)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO Project (ProjectName, DepartmentID, StaffID, StartDay, EndDay, Progress)
+    VALUES (?, ?, ?, ?, ?, 0)
   `;
   db.query(insertSql, [ProjectName, departmentID, staffID, formattedStartDate, formattedEndDate], (err, result) => {
     if (err) {

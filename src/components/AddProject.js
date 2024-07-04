@@ -23,9 +23,12 @@ const AddProject = () => {
     }
 
     try {
-      // Chuyển đổi định dạng ngày tháng từ dd/mm/yyyy sang yyyy-mm-dd
-      const formattedStartDate = startDate.split('/').reverse().join('-');
-      const formattedEndDate = endDate.split('/').reverse().join('-');
+      // Chuyển đổi định dạng ngày tháng từ dd/mm/yyyy sang yyyy-mm-dd hh:mm:ss
+      const [startDay, startMonth, startYear] = startDate.split('/');
+      const formattedStartDate = `${startYear}-${startMonth}-${startDay} 00:00:00`;
+
+      const [endDay, endMonth, endYear] = endDate.split('/');
+      const formattedEndDate = `${endYear}-${endMonth}-${endDay} 00:00:00`;
 
       // Gửi yêu cầu POST để thêm dự án
       const response = await axios.post('http://localhost:3001/api/add_project/add', {
@@ -93,9 +96,10 @@ const AddProject = () => {
           <div className="form-group">
             <label htmlFor="startDate">Ngày bắt đầu </label>
             <input
-              type="date"
+              type="text"
               id="startDate"
               name="ngayBatDau"
+              placeholder="dd/mm/yyyy"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
@@ -103,9 +107,10 @@ const AddProject = () => {
           <div className="form-group">
             <label htmlFor="endDate">Ngày kết thúc </label>
             <input
-              type="date"
+              type="text"
               id="endDate"
               name="ngayKetThuc"
+              placeholder="dd/mm/yyyy"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
