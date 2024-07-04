@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../db');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 
 // POST login
 router.post('/', (req, res) => {

@@ -14,6 +14,7 @@ const employeeRoutes = require('./routes/employee');
 // const payrollRoutes = require('./routes/payroll');
 // const staffInfoRoutes = require('./routes/staffInfo');
 // const checkinRoutes = require('./routes/checkin');
+const addProjectRoutes = require('./routes/add_project');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use('/api/projects', projectRoutes);
 app.use('/api/login', loginRoutes); 
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/add_project', addProjectRoutes);
 // app.use('/api/departments', departmentRoutes);
 
 app.use('/api/employee', employeeRoutes);

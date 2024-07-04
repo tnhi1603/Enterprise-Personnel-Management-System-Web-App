@@ -24,7 +24,7 @@ function Project() {
       <Header />
       <div className="project-container">
         <div className="project-title">
-          <h1>Danh sách dự án</h1>
+          <h2>Danh sách dự án</h2>
           <Link to="/add_project" className="add-project-button">
             Thêm Dự Án
           </Link>
