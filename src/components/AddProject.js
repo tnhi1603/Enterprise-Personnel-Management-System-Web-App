@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import './Form.css';
@@ -11,6 +11,7 @@ const AddProject = () => {
   const [employee, setEmployee] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,14 +23,17 @@ const AddProject = () => {
     }
 
     try {
+      // Chuyển đổi định dạng ngày tháng từ dd/mm/yyyy sang yyyy-mm-dd
+      const formattedStartDate = startDate.split('/').reverse().join('-');
+      const formattedEndDate = endDate.split('/').reverse().join('-');
 
       // Gửi yêu cầu POST để thêm dự án
       const response = await axios.post(`http://localhost:3001/api/add_project/add`, {
         ProjectName: projectName,
         Department: department,
         Employee: employee,
-        StartDate: startDate,
-        EndDate: endDate
+        StartDate: formattedStartDate,
+        EndDate: formattedEndDate
       });
 
       if (response.status === 200) {
@@ -40,6 +44,7 @@ const AddProject = () => {
         setEmployee('');
         setStartDate('');
         setEndDate('');
+        navigate('/project');
       } else {
         alert('Đã có lỗi xảy ra khi thêm dự án');
       }
