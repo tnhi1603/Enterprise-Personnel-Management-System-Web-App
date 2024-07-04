@@ -28,10 +28,10 @@ const AddProject = () => {
       const formattedEndDate = endDate.split('/').reverse().join('-');
 
       // Gửi yêu cầu POST để thêm dự án
-      const response = await axios.post(`http://localhost:3001/api/add_project/add`, {
+      const response = await axios.post('http://localhost:3001/api/add_project/add', {
         ProjectName: projectName,
-        Department: department,
-        Employee: employee,
+        DepartmentID: parseInt(department),
+        StaffID: parseInt(employee),
         StartDate: formattedStartDate,
         EndDate: formattedEndDate
       });
@@ -56,7 +56,7 @@ const AddProject = () => {
 
   return (
     <div>
-      <div><Header /></div>
+      <Header />
       <div className="form-container">
         <h2>Thêm Dự Án</h2>
         <form onSubmit={handleSubmit}>
@@ -113,7 +113,7 @@ const AddProject = () => {
           <button type="submit">Lưu</button>
         </form>
       </div>
-      <div><Footer /></div>
+      <Footer />
     </div>
   );
 }

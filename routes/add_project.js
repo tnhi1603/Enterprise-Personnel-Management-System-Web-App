@@ -6,16 +6,19 @@ const db = require('../db');
 router.post('/add', (req, res) => {
   const { ProjectName, DepartmentID, StaffID, StartDate, EndDate } = req.body;
 
-  // Chuyển đổi ngày tháng từ format yyyy-mm-dd sang định dạng MySQL DATE
-  const formattedStartDate = new Date(StartDate).toISOString().slice(0, 10);
-  const formattedEndDate = new Date(EndDate).toISOString().slice(0, 10);
+  // Kiểm tra và chuyển đổi kiểu dữ liệu
+  const departmentID = parseInt(DepartmentID, 10);
+  const staffID = parseInt(StaffID, 10);
 
+  // Chuyển đổi định dạng ngày tháng từ dd/mm/yyyy sang yyyy-mm-dd hh:mm:ss
+  const formattedStartDate = startDate.split('/').reverse().join('-') + ' 00:00:00';
+  const formattedEndDate = endDate.split('/').reverse().join('-') + ' 00:00:00';
   // Insert new project into database
   const insertSql = `
     INSERT INTO Project (ProjectName, DepartmentID, StaffID, StartDay, EndDay)
     VALUES (?, ?, ?, ?, ?)
   `;
-  db.query(insertSql, [ProjectName, DepartmentID, StaffID, formattedStartDate, formattedEndDate], (err, result) => {
+  db.query(insertSql, [ProjectName, departmentID, staffID, formattedStartDate, formattedEndDate], (err, result) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
