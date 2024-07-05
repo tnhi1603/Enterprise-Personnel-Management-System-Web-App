@@ -1,17 +1,29 @@
 const express = require('express');
-const mysql = require('mysql2');
 const router = express.Router();
 const db = require('../db');
 
-// GET all projects
+// Lấy danh sách dự án
 router.get('/', (req, res) => {
-  const sql = 'SELECT ProjectID, ProjectName, Progress, StartDay, EndDay FROM Project';
-  db.query(sql, (err, results) => {
+  const currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+  const sql = `
+    SELECT * FROM Project
+    ORDER BY 
+      CASE 
+        WHEN EndDay < ? THEN 1 
+        ELSE 0 
+      END, EndDay DESC
+  `;
+
+  db.query(sql, [currentDateTime], (err, results) => {
     if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      res.json(results);
+      return res.status(500).json({ error: err.message });
     }
+
+    const expiredProjects = results.filter(project => project.EndDay < currentDateTime);
+    const activeProjects = results.filter(project => project.EndDay >= currentDateTime);
+
+    res.status(200).json({ activeProjects, expiredProjects });
   });
 });
 

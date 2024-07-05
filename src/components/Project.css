@@ -1,17 +1,11 @@
-.project-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  justify-content: center; /* Center align the grid items */
-}
-
+/* Container for both project lists */
 .project-container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
+/* Title section for the project list */
 .project-title {
   display: flex;
   justify-content: space-between;
@@ -20,29 +14,35 @@
   margin-bottom: 20px;
 }
 
-.project {
-  max-width: 1200px;
-  margin: 0 auto;
+/* Main project list styling */
+.project-list, .expired-project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center; /* Center align the grid items */
 }
 
+/* Adjustments for different screen sizes */
 @media (min-width: 1201px) {
-  .project-list {
+  .project-list, .expired-project-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 1200px) and (min-width: 769px) {
-  .project-list {
+  .project-list, .expired-project-list {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .project-list {
+  .project-list, .expired-project-list {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
+/* Button styling */
 .add-project-button {
   padding: 10px 10px;
   background-color: #28a745;
@@ -57,4 +57,10 @@
 
 .add-project-button:hover {
   background-color: #218838;
+}
+
+/* Ensure projects display properly within max-width constraints */
+.project {
+  max-width: 1200px;
+  margin: 0 auto;
 }
