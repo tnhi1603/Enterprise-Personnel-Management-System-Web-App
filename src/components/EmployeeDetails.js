@@ -16,7 +16,7 @@ function EmployeeDetail() {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/employee_detail/${employeeId}`)
+    axios.get(`http://localhost:3001/api/employee/${employeeId}`)
       .then(response => {
         setEmployee(response.data);
         setFormData({
@@ -57,7 +57,7 @@ function EmployeeDetail() {
   };
 
   const handleSave = () => {
-    axios.put(`http://localhost:3001/api/employee_detail/${employeeId}`, formData)
+    axios.put(`http://localhost:3001/api/employee/update/${employeeId}`, formData)
       .then(response => {
         setEmployee(response.data);
         setIsEditing(false);

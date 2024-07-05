@@ -12,6 +12,8 @@ function Notification() {
     axios.get('http://localhost:3001/api/notification')
       .then(response => {
         const data = Array.isArray(response.data) ? response.data : [];
+        // Sort notifications by NoticeDate in descending order (newest first)
+        data.sort((a, b) => new Date(b.NoticeDate) - new Date(a.NoticeDate));
         setNotifications(data);
       })
       .catch(error => {
