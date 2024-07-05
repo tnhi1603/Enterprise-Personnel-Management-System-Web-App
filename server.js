@@ -14,6 +14,7 @@ const employeeRoutes = require('./routes/employee');
 // const payrollRoutes = require('./routes/payroll');
 // const staffInfoRoutes = require('./routes/staffInfo');
 // const checkinRoutes = require('./routes/checkin');
+const notificationRoutes = require('./routes/notification');
 const addProjectRoutes = require('./routes/add_project');
 
 const app = express();
@@ -26,7 +27,7 @@ app.use('/api/login', loginRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/add_project', addProjectRoutes);
 // app.use('/api/departments', departmentRoutes);
-
+app.use('/api/notification', notificationRoutes);
 app.use('/api/employee', employeeRoutes);
 // app.use('/api/posts', postRoutes);
 // app.use('/api/calendar', calendarRoutes);

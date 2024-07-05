@@ -15,6 +15,8 @@ import AddEmployee from './components/AddEmployee';
 import AddProject from './components/AddProject';
 import ProjectDetails from './components/ProjectDetails';
 import ProtectedRoute from './components/ProtectedRoute';
+import Notification from './components/Notification';
+import NotificationDetail from './components/NotificationDetail';
 import './App.css';
 
 function App() {
@@ -115,6 +117,22 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/notification"
+            element={
+              <ProtectedRoute>
+                <Notification />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+          path="/notification/:id"
+          element={
+            <ProtectedRoute>
+              <NotificationDetail />
+            </ProtectedRoute>
+          }
+        />
           <Route path="/" element={<Login />} />
         </Routes>
         <Footer />

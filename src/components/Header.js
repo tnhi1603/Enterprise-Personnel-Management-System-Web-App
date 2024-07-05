@@ -48,7 +48,7 @@ function Header() {
             <li className={getActiveClass('/interactions')}><Link to="/interactions">TƯƠNG TÁC</Link></li>
             <li className={getActiveClass('/calendar')}><Link to="/calendar">LỊCH</Link></li>
             <li><Link to="/"><i className="fas fa-cog"></i></Link></li>
-            <li><Link to="/"><i className="fas fa-bell"></i></Link></li>
+            <li><Link to="/notification"><i className="fas fa-bell"></i></Link></li>
             <li className={getActiveClass('/login')}><Link to="/login"><i className="fas fa-user"></i></Link></li>
           </ul>
         </nav>

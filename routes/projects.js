@@ -7,7 +7,7 @@ const db = require('../db');
 router.get('/', (req, res) => {
   const currentDateTime = new Date();
 
-  console.log('Current Date and Time:', currentDateTime); // Log current date and time
+  // console.log('Current Date and Time:', currentDateTime);
 
   const sql = `
     SELECT ProjectID, ProjectName, Progress, StartDay, EndDay 
