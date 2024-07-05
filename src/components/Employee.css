@@ -1,4 +1,3 @@
-
 .employeePage {
   padding: 20px;
 }
@@ -35,14 +34,23 @@
   border-radius: 5px;
 }
 
-.employeeList {
-  list-style-type: none;
-  padding: 0;
+.employeeTable {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.employeeItem {
+.employeeTable th, .employeeTable td {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #0000;
+  text-align: left;
+}
+
+.employeeTable th {
+  background-color: #f2f2f2;
+}
+
+.employeeTable tr:hover {
+  background-color: #f1f1f1;
 }
 
 .employeeItem a {
@@ -57,29 +65,3 @@
 .employeeFooter {
   margin-top: 20px;
 }
-
-  @media (max-width: 600px) {
-    .employeeContainer {
-      padding: 1em;
-      margin: 1em;
-    }
-  
-    .employeeSearch {
-      width: 80%;
-    }
-  
-    .employeeItem {
-      padding: 8px 12px;
-    }
-  }
-  .addEmployeeButton {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    margin:30px;
-  }
-  

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import styles from './Employee.css'; 
+import styles from './Employee.css';
 
 function EmployeeList() {
   const [employees, setEmployees] = useState([]);
@@ -29,10 +29,10 @@ function EmployeeList() {
   return (
     <div className={styles.employeePage}>
       <Header />
-      <div className={styles.employeeContainer}>
-        <div className={styles.employeeTitle}>
+      <div className="employeeContainer">
+        <div className="employeeTitle">
           <h2>Danh sách nhân viên</h2>
-          <Link to="/add_employee" className={styles.addEmployeeButton}>
+          <Link to="/add_employee" className="addEmployeeButton">
             Thêm Nhân Viên
           </Link>
         </div>
@@ -41,19 +41,30 @@ function EmployeeList() {
           placeholder="Search by name, department, or project"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
-          className={styles.employeeSearch}
+          className="employeeSearch"
         />
-        <ul className={styles.employeeList}>
-          {filteredEmployees.map(employee => (
-            <li key={employee.EmployeeID} className={styles.employeeItem}>
-              <Link to={`/employee/${employee.EmployeeID}`}>
-                {employee.EmployeeName} - {employee.DepartmentName} - {employee.ProjectName}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <table className="employeeTable">
+          <thead>
+            <tr>
+              <th>Tên Nhân Viên</th>
+              <th>Phòng Ban</th>
+              <th>Dự Án</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredEmployees.map(employee => (
+              <tr key="EmployeeID">
+                <Link to={`/employee/${employee.EmployeeID}`}>
+                    {employee.EmployeeName}
+                </Link>
+                <td>{employee.Department}</td>
+                <td>{employee.ProjectName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <Footer className={styles.employeeFooter} />
+      <Footer className="employeeFooter" />
     </div>
   );
 }
