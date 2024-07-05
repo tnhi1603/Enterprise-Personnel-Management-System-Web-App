@@ -28,7 +28,7 @@ router.get('/requests/pending', (req, res) => {
 });
 
 router.get('/events', (req, res) => {
-    const query = 'SELECT EventName, EventDate FROM Events';
+    const query = 'SELECT EventID, EventName, EventDate FROM Events';
     db.query(query, (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results);
@@ -36,7 +36,7 @@ router.get('/events', (req, res) => {
 });
 
 router.get('/notices', (req, res) => {
-    const query = 'SELECT NoticeTitle, NoticeDate FROM Notices';
+    const query = 'SELECT NoticeID, NoticeTitle, NoticeDate FROM Notices';
     db.query(query, (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results);

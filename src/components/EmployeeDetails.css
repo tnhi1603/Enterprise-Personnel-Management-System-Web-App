@@ -1,0 +1,43 @@
+.employeeDetailPage {
+    padding: 20px;
+  }
+  
+  .employeeDetailContainer {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .employeeDetailContainer h2 {
+    margin-bottom: 20px;
+  }
+  
+  .employeeDetailContainer p {
+    margin: 10px 0;
+  }
+  
+  .employeeDetailContainer label {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .employeeDetailContainer input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  
+  .employeeDetailContainer button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .employeeDetailContainer button:hover {
+    background-color: #45a049;
+  }
+  

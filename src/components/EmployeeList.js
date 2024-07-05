@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import styles from './Employee.css';
@@ -8,6 +8,7 @@ import styles from './Employee.css';
 function EmployeeList() {
   const [employees, setEmployees] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:3001/api/employee')
@@ -25,6 +26,10 @@ function EmployeeList() {
     employee.DepartmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.ProjectName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleRowClick = (employeeId) => {
+    navigate(`/employee/${employeeId}`);
+  };
 
   return (
     <div className={styles.employeePage}>
@@ -52,11 +57,9 @@ function EmployeeList() {
             </tr>
           </thead>
           <tbody>
-            {filteredEmployees.map(employee => (
-              <tr key="EmployeeID">
-                <Link to={`/employee/${employee.EmployeeID}`}>
-                    {employee.EmployeeName}
-                </Link>
+          {filteredEmployees.map(employee => (
+              <tr key={employee.EmployeeID} onClick={() => handleRowClick(employee.EmployeeID)}>
+                <td>{employee.EmployeeName}</td>
                 <td>{employee.Department}</td>
                 <td>{employee.ProjectName}</td>
               </tr>
