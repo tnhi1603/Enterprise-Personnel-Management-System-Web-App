@@ -20,19 +20,19 @@ function EmployeeList() {
       });
   }, []);
 
-  const filteredEmployees = Array.isArray(employees) ? employees.filter(employee =>
+  const filteredEmployees = employees.filter(employee =>
     employee.EmployeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.DepartmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.ProjectName.toLowerCase().includes(searchTerm.toLowerCase())
-  ) : [];
+  );
 
   return (
-    <div className={styles['employee-page']}>
+    <div className={styles.employeePage}>
       <Header />
-      <div className={styles['employee-container']}>
-        <div className={styles['employee-title']}>
-          <h1>Danh sách nhân viên</h1>
-          <Link to="/add_employee" className={styles['add-employee-button']}>
+      <div className={styles.employeeContainer}>
+        <div className={styles.employeeTitle}>
+          <h2>Danh sách nhân viên</h2>
+          <Link to="/add_employee" className={styles.addEmployeeButton}>
             Thêm Nhân Viên
           </Link>
         </div>
@@ -41,11 +41,11 @@ function EmployeeList() {
           placeholder="Search by name, department, or project"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
-          className={styles['employee-search']}
+          className={styles.employeeSearch}
         />
-        <ul className={styles['employee-list']}>
+        <ul className={styles.employeeList}>
           {filteredEmployees.map(employee => (
-            <li key={employee.EmployeeID} className={styles['employee-item']}>
+            <li key={employee.EmployeeID} className={styles.employeeItem}>
               <Link to={`/employee/${employee.EmployeeID}`}>
                 {employee.EmployeeName} - {employee.DepartmentName} - {employee.ProjectName}
               </Link>
@@ -53,7 +53,7 @@ function EmployeeList() {
           ))}
         </ul>
       </div>
-      <Footer className={styles['employee-footer']} />
+      <Footer className={styles.employeeFooter} />
     </div>
   );
 }
