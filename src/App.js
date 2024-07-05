@@ -13,6 +13,7 @@ import EmployeeList from './components/EmployeeList';
 import EmployeeDetails from './components/EmployeeDetails';
 import AddEmployee from './components/AddEmployee';
 import AddProject from './components/AddProject';
+import ProjectDetails from './components/ProjectDetails';
 import './App.css'; 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/employee/:id" element={<EmployeeDetails />} />
           <Route path="/add_employee" element={<AddEmployee />} />
           <Route path="/add_project" element={<AddProject />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
         </Routes>
       </div>
     </Router>

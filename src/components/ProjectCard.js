@@ -1,5 +1,6 @@
 import React from 'react';
-import './ProjectCard.css'; // Import CSS for project card-specific styles
+import './ProjectCard.css'; 
+import { Link } from 'react-router-dom';
 
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -19,7 +20,9 @@ function ProjectCard({ project }) {
           <p>End: {formatDate(project.EndDay)}</p>
         </div>
         </div>
-      <button>More</button>
+      <Link to={`/project/${project.ProjectID}`}>
+        <button>More</button>
+      </Link>
     </div>
   );
 }
