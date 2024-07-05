@@ -28,4 +28,24 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.put('/add/:id', (req, res) => {
+    const { id } = req.params;
+    const { NoticeTitle, NoticeDate, NoticeContent } = req.body;
+
+    const query = `
+        UPDATE notices 
+        SET NoticeTitle = ?, NoticeDate = ?, NoticeContent = ?
+        WHERE NoticeID = ?;
+    `;
+
+    db.query(query, [NoticeTitle, NoticeDate, NoticeContent, id], (err, results) => {
+        if (err) return res.status(500).send(err);
+
+        if (results.affectedRows === 0) {
+            return res.status(404).send('Notification not found');
+        }
+
+        res.json({ message: 'Notification updated successfully' });
+    });
+});
 module.exports = router;

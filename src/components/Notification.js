@@ -20,7 +20,7 @@ function Notification() {
   }, []);
 
   const filteredNotifications = notifications.filter(notification =>
-    notification.NoticeTitle.toLowerCase().includes(searchTerm.toLowerCase())
+    notification.NoticeTitle && notification.NoticeTitle.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleRowClick = (notificationId) => {
@@ -36,13 +36,15 @@ function Notification() {
             Thêm Thông Báo
           </Link>
         </div>
-        <input
-          type="text"
-          placeholder="Search by title"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          className="notificationSearch"
-        />
+        <div className="searchContainer">
+          <input
+            type="text"
+            placeholder="Search by title"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            className="notificationSearch"
+          />
+        </div>
         <table className="notificationTable">
           <thead>
             <tr>
@@ -51,8 +53,8 @@ function Notification() {
             </tr>
           </thead>
           <tbody>
-            {filteredNotifications.map(notification => (
-              <tr key={notification.NoticeID} onClick={() => handleRowClick(notification.NoticeID)}>
+            {filteredNotifications.map((notification, index) => (
+              <tr key={index} onClick={() => handleRowClick(notification.NoticeID)}>
                 <td>{notification.NoticeTitle}</td>
                 <td>{new Date(notification.NoticeDate).toLocaleDateString()}</td>
               </tr>
