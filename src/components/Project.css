@@ -5,6 +5,10 @@
   padding: 20px;
 }
 
+.project-section {
+  margin-bottom: 20px;
+}
+
 /* Title section for the project list */
 .project-title {
   display: flex;

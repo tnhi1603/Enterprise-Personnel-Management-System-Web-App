@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ProjectCard from './ProjectCard';
-import Header from './Header';
-import Footer from './Footer';
+import ProjectCard from './ProjectCard.js';
+import Header from './Header.js';
+import Footer from './Footer.js';
 import './Project.css'; 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -13,27 +13,13 @@ function Project() {
   useEffect(() => {
     axios.get('http://localhost:3001/api/projects')
       .then(response => {
-        const fetchedProjects = response.data;
-
-        // Sort projects by creation date in descending order
-        fetchedProjects.sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
-
-        // Separate active and expired projects
-        const now = new Date();
-        const active = [];
-        const expired = [];
-
-        fetchedProjects.forEach(project => {
-          const endDate = new Date(project.EndDay);
-          if (endDate < now) {
-            expired.push(project);
-          } else {
-            active.push(project);
-          }
-        });
-
-        setActiveProjects(active);
-        setExpiredProjects(expired);
+        // console.log('Fetched Projects:', response.data);
+        if (response.data && Array.isArray(response.data.activeProjects) && Array.isArray(response.data.expiredProjects)) {
+          setActiveProjects(response.data.activeProjects);
+          setExpiredProjects(response.data.expiredProjects);
+        } else {
+          console.error('Invalid response format', response.data);
+        }
       })
       .catch(error => {
         console.error('There was an error fetching the projects!', error);
@@ -50,17 +36,21 @@ function Project() {
             Thêm Dự Án
           </Link>
         </div>
-        <div className="project-list">
-          <h5>Dự Án Hiện Tại</h5>
-          {activeProjects.map((project) => (
-            <ProjectCard key={project.ProjectID} project={project} />
-          ))}
+        <div className="project-section">
+          <h4>Dự Án Hiện Tại</h4>
+          <div className="project-list">
+            {activeProjects.map((project) => (
+              <ProjectCard key={project.ProjectID} project={project} />
+            ))}
+          </div>
         </div>
-        <div className="expired-project-list">
-          <h5>Dự Án Hết Hạn</h5>
-          {expiredProjects.map((project) => (
-            <ProjectCard key={project.ProjectID} project={project} />
-          ))}
+        <div className="project-section">
+          <h4>Dự Án Hết Hạn</h4>
+          <div className="project-list">
+            {expiredProjects.map((project) => (
+              <ProjectCard key={project.ProjectID} project={project} />
+            ))}
+          </div>
         </div>
       </div>
       <Footer />

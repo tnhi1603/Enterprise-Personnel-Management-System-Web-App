@@ -1,13 +1,17 @@
 const express = require('express');
+const mysql = require('mysql2');
 const router = express.Router();
 const db = require('../db');
 
-// Lấy danh sách dự án
+// GET all projects, categorized as active or expired
 router.get('/', (req, res) => {
-  const currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  const currentDateTime = new Date();
+
+  console.log('Current Date and Time:', currentDateTime); // Log current date and time
 
   const sql = `
-    SELECT * FROM Project
+    SELECT ProjectID, ProjectName, Progress, StartDay, EndDay 
+    FROM Project
     ORDER BY 
       CASE 
         WHEN EndDay < ? THEN 1 
@@ -17,39 +21,18 @@ router.get('/', (req, res) => {
 
   db.query(sql, [currentDateTime], (err, results) => {
     if (err) {
+      console.error('Database query error:', err);
       return res.status(500).json({ error: err.message });
     }
 
-    const expiredProjects = results.filter(project => project.EndDay < currentDateTime);
-    const activeProjects = results.filter(project => project.EndDay >= currentDateTime);
+    const expiredProjects = results.filter(project => new Date(project.EndDay) < currentDateTime);
+    const activeProjects = results.filter(project => new Date(project.EndDay) >= currentDateTime);
+
+    // console.log('Active Projects:', activeProjects); // Log active projects
+    // console.log('Expired Projects:', expiredProjects); // Log expired projects
 
     res.status(200).json({ activeProjects, expiredProjects });
   });
 });
-
-router.get('/:id', async (req, res) => {
-  try {
-    const project = await project.findById(req.params.id);
-    if (!project) {
-      return res.status(404).json({ message: 'Project not found' });
-    }
-    res.json(project);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-});
-
-router.put('/:id', async (req, res) => {
-  try {
-    const project = await project.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!project) {
-      return res.status(404).json({ message: 'Project not found' });
-    }
-    res.json(project);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-});
-
 
 module.exports = router;
