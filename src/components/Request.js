@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './Request.css';
 import './Footer.css';
 import './Header.css';
-import Header from './Header.js';
-import Footer from './Footer.js';
 
 const requestsData = [
   { id: 1, title: "Xin nghỉ phép ngày...", status: "Pending", creator: "NguyenA", department: "Kĩ thuật", createDate: "09:00 Sep 08", content: "Xin nghỉ phép ngày.....", deadline: "10:20 Sep 09", state: "Đang chờ duyệt" },
@@ -27,8 +25,6 @@ function Requests() {
   };
 
   return (
-    <div className="page">
-      <div><Header /></div>
       <div className="requests">
         <div className="request-content">
           <div className="request-list">
@@ -60,8 +56,6 @@ function Requests() {
           )}
         </div>
       </div>
-      <div><Footer /></div>
-    </div>
   );
 }
 

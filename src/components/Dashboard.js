@@ -3,8 +3,6 @@ import axios from 'axios';
 import StatCard from './StatCard';
 import EventList from './EventList';
 import NoticeList from './NoticeList';
-import Header from './Header';
-import Footer from './Footer';
 import './Dashboard.css';
 import { FaUsers, FaTasks } from 'react-icons/fa';
 import { MdOutlinePendingActions } from "react-icons/md";
@@ -39,7 +37,6 @@ function Dashboard() {
 
   return (
     <div className="page">
-      <div><Header /></div>
       <div className="dashboard">
         <div className="stats">
           <StatCard count={onlineMembers} label="Members" icon={<FaUsers />} />
@@ -57,7 +54,6 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div><Footer /></div>
     </div>
   );
 }

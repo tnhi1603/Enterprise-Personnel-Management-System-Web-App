@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard.js';
-import Header from './Header.js';
-import Footer from './Footer.js';
 import './Project.css'; 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -27,8 +25,6 @@ function Project() {
   }, []);
 
   return (
-    <div className="page">
-      <Header />
       <div className="project-container">
         <div className="project-title">
           <h4>Danh sách dự án</h4>
@@ -53,8 +49,6 @@ function Project() {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
   );
 }
 

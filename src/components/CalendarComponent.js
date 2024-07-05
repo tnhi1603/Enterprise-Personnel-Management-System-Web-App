@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import Header from './Header.js';
-import Footer from './Footer.js';
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css'; 
 
@@ -23,8 +21,6 @@ const CalendarComponent = ({ tasks, onSelectDate }) => {
   };
 
   return (
-    <div className="page">
-      <div><Header /></div>
     <div className="calendar-page">
       <div className="calendar-column">
         <div className="calendar-title">Calendar</div>
@@ -44,8 +40,6 @@ const CalendarComponent = ({ tasks, onSelectDate }) => {
           ))}
         </ul>
       </div>
-    </div>
-    <div><Footer /></div>
     </div>
   );
 };

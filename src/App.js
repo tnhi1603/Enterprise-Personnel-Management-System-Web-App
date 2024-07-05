@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Dashboard from './components/Dashboard'
+import Dashboard from './components/Dashboard';
 import Project from './components/Project';
 import Footer from './components/Footer';
 import Request from './components/Request';
@@ -14,7 +14,8 @@ import EmployeeDetails from './components/EmployeeDetails';
 import AddEmployee from './components/AddEmployee';
 import AddProject from './components/AddProject';
 import ProjectDetails from './components/ProjectDetails';
-import './App.css'; 
+import ProtectedRoute from './components/ProtectedRoute';
+import './App.css';
 
 function App() {
   const tasks = {
@@ -29,32 +30,97 @@ function App() {
 
   return (
     <div className="App">
- <Router>
-      <div className="App">
+      <Router>
+        <Header />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/project" element={<Project />} />
-          <Route path="/" element={<Header />} />
-          <Route path="/" element={<Footer />} />
-          <Route path="/requests" element={<Request />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/interactions" element={<InteractionPage />} />
-          <Route path="/calendar"
-              element={<CalendarComponent tasks={tasks} onSelectDate={handleSelectDate} />}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/employee" element={<EmployeeList />} />
-          <Route path="/employee/:id" element={<EmployeeDetails />} />
-          <Route path="/add_employee" element={<AddEmployee />} />
-          <Route path="/add_project" element={<AddProject />} />
-          <Route path="/project/:id" element={<ProjectDetails />} />
+          <Route
+            path="/project"
+            element={
+              <ProtectedRoute>
+                <Project />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/requests"
+            element={
+              <ProtectedRoute>
+                <Request />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/interactions"
+            element={
+              <ProtectedRoute>
+                <InteractionPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/calendar"
+            element={
+              <ProtectedRoute>
+                <CalendarComponent tasks={tasks} onSelectDate={handleSelectDate} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/employee"
+            element={
+              <ProtectedRoute>
+                <EmployeeList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/employee/:id"
+            element={
+              <ProtectedRoute>
+                <EmployeeDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add_employee"
+            element={
+              <ProtectedRoute>
+                <AddEmployee />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add_project"
+            element={
+              <ProtectedRoute>
+                <AddProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/project/:id"
+            element={
+              <ProtectedRoute>
+                <ProjectDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/" element={<Login />} />
         </Routes>
-      </div>
-    </Router>
+        <Footer />
+      </Router>
     </div>
   );
 }
 
 export default App;
-

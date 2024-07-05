@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Post from './Post';
-import Header from './Header';
-import Footer from './Footer';
 import './InteractionPage.css';
 
 const initialPosts = [
@@ -48,8 +46,6 @@ function InteractionPage() {
   };
 
   return (
-    <div className="page">
-      <Header />
       <div className="interaction-page">
         <form onSubmit={handlePostSubmit} className="post-form">
           <textarea
@@ -65,8 +61,6 @@ function InteractionPage() {
           ))}
         </div>
       </div>
-      <Footer />
-    </div>
   );
 }
 

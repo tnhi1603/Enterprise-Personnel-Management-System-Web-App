@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link , useNavigate } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 import styles from './Employee.css';
 
 function EmployeeList() {
@@ -33,7 +31,6 @@ function EmployeeList() {
 
   return (
     <div className={styles.employeePage}>
-      <Header />
       <div className="employeeContainer">
         <div className="employeeTitle">
           <h2>Danh sách nhân viên</h2>
@@ -67,7 +64,6 @@ function EmployeeList() {
           </tbody>
         </table>
       </div>
-      <Footer className="employeeFooter" />
     </div>
   );
 }
