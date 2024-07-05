@@ -25,10 +25,10 @@ const AddProject = () => {
     try {
       // Chuyển đổi định dạng ngày tháng từ dd/mm/yyyy sang yyyy-mm-dd hh:mm:ss
       const [startDay, startMonth, startYear] = startDate.split('/');
-      const formattedStartDate = `${startYear}-${startMonth}-${startDay} 00:00:00`;
+      const formattedStartDate = `${startYear}-${startMonth}-${startDay} 07:00:00`;
 
       const [endDay, endMonth, endYear] = endDate.split('/');
-      const formattedEndDate = `${endYear}-${endMonth}-${endDay} 00:00:00`;
+      const formattedEndDate = `${endYear}-${endMonth}-${endDay} 07:00:00`;
 
       // Gửi yêu cầu POST để thêm dự án
       const response = await axios.post('http://localhost:3001/api/add_project/add', {
