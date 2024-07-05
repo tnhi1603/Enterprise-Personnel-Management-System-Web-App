@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
 import './ProjectDetails.css';
 
 const ProjectDetails = () => {
@@ -41,8 +39,6 @@ const ProjectDetails = () => {
   if (!project) return <div>Loading...</div>;
 
   return (
-    <div>
-      <Header />
       <div className="project-details-container">
         <h2>Project Details</h2>
         <form onSubmit={handleEdit}>
@@ -94,8 +90,6 @@ const ProjectDetails = () => {
           <button type="submit">Save Changes</button>
         </form>
       </div>
-      <Footer />
-    </div>
   );
 };
 

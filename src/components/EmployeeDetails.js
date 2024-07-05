@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 import styles from './EmployeeDetails.css';
 function EmployeeDetail() {
   const { employeeId } = useParams();
@@ -70,8 +68,6 @@ function EmployeeDetail() {
   };
 
   return (
-    <div className={styles.employeeDetailPage}>
-      <Header />
       <div className={styles.employeeDetailContainer}>
         {employee ? (
           <div>
@@ -151,8 +147,6 @@ function EmployeeDetail() {
           <p>Loading employee details...</p>
         )}
       </div>
-      <Footer />
-    </div>
   );
 }
 

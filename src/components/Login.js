@@ -8,7 +8,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,46 +43,51 @@ function Login() {
     }
   };
 
-  return (
+  if (loggedInUser) {
+    return (
       <div className="form-container">
-        {loggedInUser ? (
-          <div>
-            <h2>Welcome, {loggedInUser}!</h2>
-            <Link to="/dashboard">Go to Dashboard</Link>
-          </div>
-        ) : (
-          <>
-            <h2>ĐĂNG NHẬP</h2>
-            {error && <p className="error">{error}</p>}
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Username: </label>
-                <input
-                  type="text"
-                  name="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Password: </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <button type="submit">ĐĂNG NHẬP</button>
-            </form>
-            <Link to="/register">Đăng ký</Link>
-            <Link to="/forgot-password">Quên mật khẩu?</Link>
-          </>
-        )}
+        <div>
+          <h2>Welcome, {loggedInUser}!</h2>
+          <Link to="/dashboard">Go to Dashboard</Link>
+        </div>
       </div>
+    );
+  } else{
+
+  return (
+    <div className="form-container">
+      <>
+        <h2>ĐĂNG NHẬP</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Username: </label>
+            <input
+              type="text"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Password: </label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">ĐĂNG NHẬP</button>
+        </form>
+        <Link to="/register">Đăng ký</Link>
+        <Link to="/forgot-password">Quên mật khẩu?</Link>
+      </>
+    </div>
   );
+}
 }
 
 export default Login;
