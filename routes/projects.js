@@ -60,7 +60,7 @@ router.put('/update/:id', (req, res) => {
 
   const query = `
     UPDATE Project 
-    SET ProjectName = ?, Progress = ?, StartDay = ?, EndDay = ?, DepartmentID = ?
+    SET ProjectName = ?, Progress = ?, StartDay = ?, EndDay = ?, DepartmentID = ?, StaffID = ?
     WHERE ProjectID = ?
   `;
 
