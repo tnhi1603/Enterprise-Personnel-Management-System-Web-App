@@ -96,7 +96,7 @@ const AddProject = () => {
           <div className="form-group">
             <label htmlFor="startDate">Ngày bắt đầu </label>
             <input
-              type="text"
+              type="date"
               id="startDate"
               name="ngayBatDau"
               placeholder="dd/mm/yyyy"
@@ -107,7 +107,7 @@ const AddProject = () => {
           <div className="form-group">
             <label htmlFor="endDate">Ngày kết thúc </label>
             <input
-              type="text"
+              type="date"
               id="endDate"
               name="ngayKetThuc"
               placeholder="dd/mm/yyyy"
