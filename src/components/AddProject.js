@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
 import './Form.css';
 
 const AddProject = () => {
@@ -58,8 +56,6 @@ const AddProject = () => {
   };
 
   return (
-    <div>
-      <Header />
       <div className="form-container">
         <h2>Thêm Dự Án</h2>
         <form onSubmit={handleSubmit}>
@@ -118,8 +114,6 @@ const AddProject = () => {
           <button type="submit">Lưu</button>
         </form>
       </div>
-      <Footer />
-    </div>
   );
 }
 

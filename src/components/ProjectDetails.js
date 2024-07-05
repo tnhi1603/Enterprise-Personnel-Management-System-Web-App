@@ -21,9 +21,18 @@ const ProjectDetails = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
 
+    const updatedProject = {
+      ProjectName: project.ProjectName,
+      Progress: project.Progress,
+      StartDay: project.StartDay,
+      EndDay: project.EndDay,
+      DepartmentID: project.DepartmentID,
+      StaffID: project.StaffID
+    };
+
     // Send a PUT request to update the project details
     try {
-      const response = await axios.put(`http://localhost:3001/api/projects/update/${id}`, project);
+      const response = await axios.put(`http://localhost:3001/api/projects/update/${id}`, updatedProject);
       if (response.status === 200) {
         alert('Project updated successfully');
         navigate('/project');
@@ -36,15 +45,16 @@ const ProjectDetails = () => {
     }
   };
 
-  const formatDateTime = (dateTime) => {
-    const date = new Date(dateTime);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-  };
+const formatDateTime = (dateTime) => {
+  const date = new Date(dateTime);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+};
 
   if (!project) return <div>Loading...</div>;
 
@@ -113,6 +123,15 @@ const ProjectDetails = () => {
             id="endDate"
             value={formatDateTime(project.EndDay)}
             onChange={(e) => setProject({ ...project, EndDay: e.target.value.replace('T', ' ') })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="progress">Progress</label>
+          <input
+            type="number"
+            id="progress"
+            value={project.Progress}
+            onChange={(e) => setProject({ ...project, Progress: e.target.value })}
           />
         </div>
         <button type="submit">Save Changes</button>

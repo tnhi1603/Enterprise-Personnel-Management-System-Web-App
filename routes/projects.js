@@ -38,11 +38,13 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const projectId = req.params.id;
     const query = `
-        SELECT Project.ProjectID, Project.ProjectName, Project.StartDay, Project.EndDay, Project.Progress, Project.ProjectName, Project.DepartmentID, Project.StaffID 
-        FROM project
+        SELECT Project.ProjectID, Project.ProjectName, Project.StartDay, Project.EndDay, Project.Progress, Project.ProjectName, Project.DepartmentID, Project.StaffID, Department.Department, Staff.StaffName 
+        FROM Project
         LEFT JOIN 
         Department ON Project.DepartmentID = Department.DepartmentID
-        WHERE ProjectID = ?;
+        LEFT JOIN 
+        Staff ON Project.StaffID = Staff.StaffID
+        WHERE Project.ProjectID = ?;
     `;
 
     db.query(query, [projectId], (err, results) => {
@@ -52,16 +54,27 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.put('update/:id', async (req, res) => {
-  try {
-    const project = await project.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!project) {
-      return res.status(404).json({ message: 'Project not found' });
+router.put('/update/:id', (req, res) => {
+  const projectId = req.params.id;
+  const { ProjectName, Progress, StartDay, EndDay, DepartmentID } = req.body;
+
+  const query = `
+    UPDATE Project 
+    SET ProjectName = ?, Progress = ?, StartDay = ?, EndDay = ?, DepartmentID = ?
+    WHERE ProjectID = ?
+  `;
+
+  db.query(query, [ProjectName, Progress, StartDay, EndDay, DepartmentID, projectId], (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Database update error' });
     }
-    res.json(project);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+    res.json({ message: 'Project updated successfully', projectId, ProjectName, Progress, StartDay, EndDay, DepartmentID });
+  });
 });
+
 
 module.exports = router;
