@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const projectId = req.params.id;
     const query = `
-        SELECT Project.ProjectID, Project.ProjectName, Project.StartDay, Project.EndDay, Project.Progress, Project.ProjectName, Project.DepartmentID, Project.StaffID, Department.Department, Staff.StaffName 
+        SELECT Project.ProjectID, Project.ProjectName, Project.StartDay, Project.EndDay, Project.Progress, Project.DepartmentID, Project.StaffID, Department.Department, Staff.StaffName 
         FROM Project
         LEFT JOIN 
         Department ON Project.DepartmentID = Department.DepartmentID
@@ -56,7 +56,7 @@ router.get('/:id', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
   const projectId = req.params.id;
-  const { ProjectName, Progress, StartDay, EndDay, DepartmentID } = req.body;
+  const { ProjectName, Progress, StartDay, EndDay, DepartmentID, StaffID } = req.body;
 
   const query = `
     UPDATE Project 
@@ -64,7 +64,7 @@ router.put('/update/:id', (req, res) => {
     WHERE ProjectID = ?
   `;
 
-  db.query(query, [ProjectName, Progress, StartDay, EndDay, DepartmentID, projectId], (err, results) => {
+  db.query(query, [ProjectName, Progress, StartDay, EndDay, DepartmentID, StaffID, projectId], (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
       return res.status(500).json({ error: 'Database update error' });

@@ -22,6 +22,7 @@ import AddNoti from './components/AddNoti';
 import EmployeeDetail from './components/EmployeeDetails';
 import Event from './components/Event';
 import AddEvent from './components/AddEvent';
+import EventDetail from './components/EventDetail';
 import './App.css';
 
 function App() {
@@ -137,11 +138,20 @@ function App() {
             </ProtectedRoute>
           }
         />
+        
         <Route
           path="/event"
           element={
             <ProtectedRoute>
               <Event />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/event/:id"
+          element={
+            <ProtectedRoute>
+              <EventDetail />
             </ProtectedRoute>
           }
         />

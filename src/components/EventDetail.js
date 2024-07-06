@@ -25,7 +25,7 @@ function EventDetail() {
         });
       })
       .catch(error => {
-        console.error('There was an error fetching the notification data!', error);
+        console.error('There was an error fetching the event data!', error);
       });
   }, [id]);
 
