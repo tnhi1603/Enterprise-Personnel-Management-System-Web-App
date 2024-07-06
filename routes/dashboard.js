@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 const db = require('../db'); 
 
 router.get('/members/online', (req, res) => {
-    const query = 'SELECT COUNT(*) AS onlineMembers FROM Checkin WHERE DateOfCheckIn = CURDATE() AND NumberOfLate > 0';
+    const query = 'SELECT COUNT(*) AS onlineMembers FROM staffinfo WHERE WorkStatus = "Active" ';
     db.query(query, (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results[0]);
@@ -20,7 +20,7 @@ router.get('/projects/active', (req, res) => {
 });
 
 router.get('/requests/pending', (req, res) => {
-    const query = 'SELECT COUNT(*) AS pendingRequests FROM Request WHERE Status = "Pending"';
+    const query = 'SELECT COUNT(*) AS pendingRequests FROM Request WHERE RequestState = "Pending"';
     db.query(query, (err, results) => {
         if (err) return res.status(500).send(err);
         res.json(results[0]);

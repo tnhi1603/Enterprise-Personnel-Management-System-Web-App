@@ -17,12 +17,23 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [eventListRes, noticeListRes] = await Promise.all([
+        const [
+          onlineMembersRes,
+          activeProjectsRes,
+          pendingRequestsRes,
+          eventListRes,
+          noticeListRes
+        ] = await Promise.all([
+          axios.get('http://localhost:3001/api/dashboard/members/online'),
+          axios.get('http://localhost:3001/api/dashboard/projects/active'),
+          axios.get('http://localhost:3001/api/dashboard/requests/pending'),
           axios.get('http://localhost:3001/api/dashboard/events'),
           axios.get('http://localhost:3001/api/dashboard/notices')
         ]);
 
-        // Assuming these endpoints return arrays of objects
+        setOnlineMembers(onlineMembersRes.data.onlineMembers);
+        setActiveProjects(activeProjectsRes.data.activeProjects);
+        setPendingRequests(pendingRequestsRes.data.pendingRequests);
         setEvents(eventListRes.data);
         setNotices(noticeListRes.data);
       } catch (error) {
