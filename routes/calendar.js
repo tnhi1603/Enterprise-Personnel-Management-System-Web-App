@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../db');
 
 router.get('/projects', (req, res) => {
-    const query = 'SELECT ProjectID, ProjectName, StartDay, EndDay FROM project';
+    const query = 'SELECT ProjectID, ProjectName, StartDay, EndDay, Progress FROM project';
     db.query(query, (err, results) => {
       if (err) {
         console.error('Error fetching projects:', err);

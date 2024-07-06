@@ -20,15 +20,15 @@ import NotificationDetail from './components/NotificationDetail';
 import './App.css';
 
 function App() {
-  const tasks = {
-    'Sat Jun 15 2024': ['Deadline Project Beta', 'Task from Department BA'],
-    'Mon Jun 10 2024': ['Deadline Project Alpha'],
-    'Sun Jun 2 2024': ['Deadline Project Beta', 'Task from Department BA'],
-  };
+  // const tasks = {
+  //   'Sat Jun 15 2024': ['Deadline Project Beta', 'Task from Department BA'],
+  //   'Mon Jun 10 2024': ['Deadline Project Alpha'],
+  //   'Sun Jun 2 2024': ['Deadline Project Beta', 'Task from Department BA'],
+  // };
 
-  const handleSelectDate = (date) => {
-    console.log('Selected date:', date);
-  };
+  // const handleSelectDate = (date) => {
+  //   console.log('Selected date:', date);
+  // };
 
   return (
     <div className="App">
@@ -73,7 +73,7 @@ function App() {
             path="/calendar"
             element={
               <ProtectedRoute>
-                <CalendarComponent tasks={tasks} onSelectDate={handleSelectDate} />
+                <CalendarComponent />
               </ProtectedRoute>
             }
           />
