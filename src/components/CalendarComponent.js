@@ -1,11 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './calendar.css'; 
 
-const CalendarComponent = ({ tasks, onSelectDate }) => {
+const CalendarComponent = ({ onSelectDate }) => {
   const [date, setDate] = useState(new Date());
   const [selectedTasks, setSelectedTasks] = useState([]);
+  const [tasks, setTasks] = useState({});
+
+  useEffect(() => {
+    fetchProjects();
+    fetchEvents();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/calendar/projects');
+      const projects = await response.json();
+
+      let tasksData = {};
+      for (let project of projects) {
+        tasksData = {
+          ...tasksData,
+          [new Date(project.startDate).toDateString()]: [`Project Start: ${project.name}`],
+          [new Date(project.endDate).toDateString()]: [`Project End: ${project.name}`],
+        };
+      }
+      setTasks(prevTasks => ({ ...prevTasks, ...tasksData }));
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
+  };
+
+  const fetchEvents = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/calendar/events');
+      const events = await response.json();
+
+      let tasksData = {};
+      for (let event of events) {
+        const eventDate = new Date(event.eventDate).toDateString();
+        tasksData[eventDate] = tasksData[eventDate] || [];
+        tasksData[eventDate].push(event.description);
+      }
+      setTasks(prevTasks => ({ ...prevTasks, ...tasksData }));
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    }
+  };
 
   const handleDateChange = (date) => {
     setDate(date);

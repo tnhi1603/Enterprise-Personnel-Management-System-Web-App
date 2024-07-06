@@ -31,11 +31,14 @@ function Dashboard() {
           axios.get('http://localhost:3001/api/dashboard/notices')
         ]);
 
+        const sortedEvents = eventListRes.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        const sortedNotices = noticeListRes.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
         setOnlineMembers(onlineMembersRes.data.onlineMembers);
         setActiveProjects(activeProjectsRes.data.activeProjects);
         setPendingRequests(pendingRequestsRes.data.pendingRequests);
-        setEvents(eventListRes.data);
-        setNotices(noticeListRes.data);
+        setEvents(sortedEvents);
+        setNotices(sortedNotices);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }
