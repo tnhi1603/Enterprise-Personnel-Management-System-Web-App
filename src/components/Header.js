@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './Header.css';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../logo.png'; 
+import { isAuthenticated } from '../utils/auth';
 
 function Header() {
   const location = useLocation();
@@ -47,9 +48,13 @@ function Header() {
             <li className={getActiveClass('/requests')}><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>
             <li className={getActiveClass('/interactions')}><Link to="/interactions">TƯƠNG TÁC</Link></li>
             <li className={getActiveClass('/calendar')}><Link to="/calendar">LỊCH</Link></li>
-            <li><Link to="/event"><i className="far fa-calendar-minus"></i></Link></li>
+            <li><Link to="/"><i className="far fa-calendar-minus"></i></Link></li>
             <li><Link to="/notification"><i className="fas fa-bell"></i></Link></li>
-            <li className={getActiveClass('/login')}><Link to="/login"><i className="fas fa-user"></i></Link></li>
+            <li className={getActiveClass(isAuthenticated ? '/userinfo' : '/login')}>
+              <Link to={isAuthenticated ? '/userinfo' : '/login'}>
+                <i className="fas fa-user"></i>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

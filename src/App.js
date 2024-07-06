@@ -17,18 +17,10 @@ import ProjectDetails from './components/ProjectDetails';
 import ProtectedRoute from './components/ProtectedRoute';
 import Notification from './components/Notification';
 import NotificationDetail from './components/NotificationDetail';
+import UserInfo from './components/UserInfo';
 import './App.css';
 
 function App() {
-  // const tasks = {
-  //   'Sat Jun 15 2024': ['Deadline Project Beta', 'Task from Department BA'],
-  //   'Mon Jun 10 2024': ['Deadline Project Alpha'],
-  //   'Sun Jun 2 2024': ['Deadline Project Beta', 'Task from Department BA'],
-  // };
-
-  // const handleSelectDate = (date) => {
-  //   console.log('Selected date:', date);
-  // };
 
   return (
     <div className="App">
@@ -130,6 +122,15 @@ function App() {
           element={
             <ProtectedRoute>
               <NotificationDetail />
+            </ProtectedRoute>
+          }
+        />
+        
+        <Route
+          path="/userinfo"
+          element={
+            <ProtectedRoute>
+              <UserInfo />
             </ProtectedRoute>
           }
         />

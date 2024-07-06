@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 import './Form.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loggedInUser, setLoggedInUser] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
-        const decodedToken = jwtDecode(token);
-        setLoggedInUser(decodedToken.username);
       } catch (err) {
         console.error('Invalid token');
+        localStorage.removeItem('token'); 
       }
     }
   }, []);
@@ -29,30 +26,15 @@ function Login() {
       const response = await axios.post('http://localhost:3001/api/login', { username, password });
       const { token } = response.data;
 
-      // Save token to local storage or state management
+      // Save token to local storage
       localStorage.setItem('token', token);
 
-      // Decode the token to get the username
-      const decodedToken = jwtDecode(token);
-      setLoggedInUser(decodedToken.username);
-
       // Redirect to the dashboard
-      navigate('/dashboard');
+      navigate('/userinfo');
     } catch (err) {
       setError('Invalid username or password');
     }
   };
-
-  if (loggedInUser) {
-    return (
-      <div className="form-container">
-        <div>
-          <h2>Welcome, {loggedInUser}!</h2>
-          <Link to="/dashboard">Go to Dashboard</Link>
-        </div>
-      </div>
-    );
-  } else{
 
   return (
     <div className="form-container">
@@ -87,7 +69,6 @@ function Login() {
       </>
     </div>
   );
-}
 }
 
 export default Login;
