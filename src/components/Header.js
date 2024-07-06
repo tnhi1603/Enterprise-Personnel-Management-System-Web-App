@@ -48,7 +48,7 @@ function Header() {
             <li className={getActiveClass('/requests')}><Link to="/requests">YÊU CẦU ĐANG CHỜ XỬ LÝ</Link></li>
             <li className={getActiveClass('/interactions')}><Link to="/interactions">TƯƠNG TÁC</Link></li>
             <li className={getActiveClass('/calendar')}><Link to="/calendar">LỊCH</Link></li>
-            <li><Link to="/"><i className="far fa-calendar-minus"></i></Link></li>
+            <li><Link to="/event"><i className="far fa-calendar-minus"></i></Link></li>
             <li><Link to="/notification"><i className="fas fa-bell"></i></Link></li>
             <li className={getActiveClass(isAuthenticated ? '/userinfo' : '/login')}>
               <Link to={isAuthenticated ? '/userinfo' : '/login'}>

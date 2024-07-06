@@ -31,7 +31,7 @@ function Dashboard() {
           axios.get('http://localhost:3001/api/dashboard/notices')
         ]);
 
-        const sortedEvents = eventListRes.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        const sortedEvents = eventListRes.data.sort((b, a) => new Date(a.date) - new Date(b.date));
         const sortedNotices = noticeListRes.data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
         setOnlineMembers(onlineMembersRes.data.onlineMembers);

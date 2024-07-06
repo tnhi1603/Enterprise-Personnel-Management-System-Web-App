@@ -20,6 +20,8 @@ import NotificationDetail from './components/NotificationDetail';
 import UserInfo from './components/UserInfo';
 import AddNoti from './components/AddNoti';
 import EmployeeDetail from './components/EmployeeDetails';
+import Event from './components/Event';
+import AddEvent from './components/AddEvent';
 import './App.css';
 
 function App() {
@@ -132,6 +134,22 @@ function App() {
           element={
             <ProtectedRoute>
               <AddNoti />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/event"
+          element={
+            <ProtectedRoute>
+              <Event />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/addevent"
+          element={
+            <ProtectedRoute>
+              <AddEvent />
             </ProtectedRoute>
           }
         />
