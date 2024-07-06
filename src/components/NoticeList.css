@@ -1,12 +1,30 @@
-.notice-list {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 8px;
-    margin: 8px;
-  }
-  
-  .list-title {
-    border-bottom: 2px solid blue;
-    padding-bottom: 4px;
-    margin-bottom: 8px;
-  }
+.notice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notice-table th, .notice-table td {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  text-align: center;
+}
+
+.notice-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: center;
+}
+
+.notice-item a {
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+}
+
+.notice-item a:hover {
+  text-decoration: underline;
+}
+
+.notice-item:nth-child(even) {
+  background-color: #f9f9f9;
+}

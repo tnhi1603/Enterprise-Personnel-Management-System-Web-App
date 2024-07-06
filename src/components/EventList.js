@@ -1,18 +1,25 @@
 import React from 'react';
 import './EventList.css';
 
-function EventList({ events }) {
+const EventList = ({ events = [] }) => {
   return (
-    <ul className="event-list">
-      {events.map(event => (
-        <li key={event.id} className="event-item">
-          <h3>{event.title}</h3>
-          <p>{event.description}</p>
-          <span>{new Date(event.date).toLocaleDateString()}</span>
-        </li>
-      ))}
-    </ul>
+    <table className="event-table">
+      <thead>
+        <tr>
+          <th>Tên Sự Kiện</th>
+          <th>Ngày Sự Kiện</th>
+        </tr>
+      </thead>
+      <tbody>
+        {events.map((event) => (
+          <tr key={event.EventID} className="event-item">
+            <td><a href={`/events/${event.EventID}`}>{event.EventName}</a></td>
+            <td>{new Date(event.EventDate).toLocaleDateString()}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
-}
+};
 
 export default EventList;

@@ -22,9 +22,7 @@ function Dashboard() {
           axios.get('http://localhost:3001/api/dashboard/notices')
         ]);
 
-        // setOnlineMembers(onlineMembersRes.data.onlineMembers);
-        // setActiveProjects(activeProjectsRes.data.activeProjects);
-        // setPendingRequests(pendingRequestsRes.data.pendingRequests);
+        // Assuming these endpoints return arrays of objects
         setEvents(eventListRes.data);
         setNotices(noticeListRes.data);
       } catch (error) {

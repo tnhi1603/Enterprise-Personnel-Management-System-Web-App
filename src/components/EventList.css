@@ -1,12 +1,29 @@
-.event-list {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 8px;
-    margin: 8px;
-  }
-  
-  .list-title {
-    border-bottom: 2px solid red;
-    padding-bottom: 4px;
-    margin-bottom: 8px;
-  }
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.event-table th, .event-table td {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  text-align: center;
+}
+
+.event-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.event-item a {
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+}
+
+.event-item a:hover {
+  text-decoration: underline;
+}
+
+.event-item:nth-child(even) {
+  background-color: #f9f9f9;
+}

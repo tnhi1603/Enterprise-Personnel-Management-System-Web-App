@@ -24,8 +24,8 @@ const AddEmployee = () => {
 
     try {
       const response = await axios.post('http://localhost:3001/api/add_employee/add', formData);
-      console.log(response.data); // Log the response if needed
-      // Optionally, redirect or show success message
+      console.log(response.data); 
+      
     } catch (error) {
       console.error('Error adding employee:', error);
       // Handle error: show error message or retry logic
