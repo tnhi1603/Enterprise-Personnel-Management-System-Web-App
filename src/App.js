@@ -18,6 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Notification from './components/Notification';
 import NotificationDetail from './components/NotificationDetail';
 import UserInfo from './components/UserInfo';
+import AddNoti from './components/AddNoti';
 import './App.css';
 
 function App() {
@@ -122,6 +123,14 @@ function App() {
           element={
             <ProtectedRoute>
               <NotificationDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/addnoti"
+          element={
+            <ProtectedRoute>
+              <AddNoti />
             </ProtectedRoute>
           }
         />

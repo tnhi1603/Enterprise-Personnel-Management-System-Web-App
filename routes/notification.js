@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const noticeId = req.params.id;
     const query = `
-        SELECT NoticeTitle, NoticeDate, NoticeContent 
+        SELECT NoticeTitle, NoticeDate, NoticeContent, Attachment 
         FROM notices 
         WHERE NoticeID = ?;
     `;

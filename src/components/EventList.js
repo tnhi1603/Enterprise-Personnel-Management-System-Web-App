@@ -6,8 +6,6 @@ const EventList = ({ events = [] }) => {
     <table className="event-table">
       <thead>
         <tr>
-          <th>Tên Sự Kiện</th>
-          <th>Ngày Sự Kiện</th>
         </tr>
       </thead>
       <tbody>

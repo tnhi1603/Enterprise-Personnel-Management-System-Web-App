@@ -34,7 +34,7 @@ function Notification() {
       <div className="notificationContainer">
         <div className="notificationTitle">
           <h2>Danh sách thông báo</h2>
-          <Link to="/add_notification" className="addNotificationButton">
+          <Link to="/addnoti" className="addNotificationButton">
             Thêm Thông Báo
           </Link>
         </div>

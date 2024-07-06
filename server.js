@@ -17,6 +17,7 @@ const calendarRoutes = require('./routes/calendar');
 const notificationRoutes = require('./routes/notification');
 const addProjectRoutes = require('./routes/add_project');
 const requestRoutes = require('./routes/requests');
+const addNotiRoutes = require('./routes/addnoti');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -33,6 +34,7 @@ app.use('/api/employee', employeeRoutes);
 app.use('/api/requests', requestRoutes);
 // app.use('/api/posts', postRoutes);
 app.use('/api/calendar', calendarRoutes);
+app.use('/api/addnoti', addNotiRoutes);
 // app.use('/api/documents', documentsRoutes);
 // app.use('/api/communication', communicationRoutes);
 // app.use('/api/payroll', payrollRoutes);

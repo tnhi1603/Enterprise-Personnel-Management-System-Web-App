@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-// import 'react-toastify/dist/ReactToastify.css';
+import './Form.css';
 
 function NotificationDetail() {
   const { id } = useParams();
@@ -64,17 +64,27 @@ function NotificationDetail() {
       <div className="notificationDetailContainer">
         {isEditing ? (
           <div>
+            <h3>Sửa thông báo</h3>
             <input
               type="text"
               name="NoticeTitle"
               value={editedNotification.NoticeTitle}
               onChange={handleChange}
             />
+            <br></br>
             <textarea
               name="NoticeContent"
               value={editedNotification.NoticeContent}
               onChange={handleChange}
             />
+            <br></br>
+            <input
+              type="file"
+              name="Attachment"
+              value={editedNotification.Attachment}
+              onChange={handleChange}
+            />
+            <br></br>
             <button onClick={handleSave}>Save</button>
           </div>
         ) : (
