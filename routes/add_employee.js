@@ -2,25 +2,58 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
-// Thêm nhân viên mới
+// Route to add a new employee with full details
 router.post('/add', (req, res) => {
-  const { username, password, email, phoneNumber, dayOfBirth, department, employeeID, employeeName } = req.body;
+  const {
+    msnv,
+    hoTen,
+    ngaySinh,
+    cccd,
+    phongBan,
+    gender,
+    position,
+    birthplace,
+    nationality,
+    nation,
+    languages,
+    currentAddress,
+    dateOfJoining,
+    email,
+    phoneNumber,
+    username,
+    password
+  } = req.body;
 
-  // Kiểm tra nếu các trường bắt buộc không có giá trị
-  if (!username || !password || !email || !phoneNumber || !dayOfBirth || !department || !employeeID || !employeeName) {
-    return res.status(400).json({ error: 'Vui lòng điền đầy đủ thông tin' });
-  }
+  const insertEmployeeQuery = `
+    INSERT INTO Staff (StaffID, StaffName, DayOfBirth, PhoneNumber, Email, DepartmentID)
+    VALUES (?, ?, ?, ?, ?, ?)`;
 
-  // Insert new employee into database
-  const insertSql = `
-    INSERT INTO Employee (LoginUsername, LoginPassword, Email, PhoneNumber, DayOfBirth, Department, EmployeeID, EmployeeName)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-  `;
-  db.query(insertSql, [username, password, email, phoneNumber, dayOfBirth, department, employeeID, employeeName], (err, result) => {
+  const insertStaffInfoQuery = `
+    INSERT INTO StaffInfo (StaffID, Gender, CCCD, Position, Birthplace, Nationality, Nation, Languages, CurrentAddress, DateOfJoining)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  const insertLoginQuery = `
+    INSERT INTO Login (StaffID, username, password)
+    VALUES (?, ?, ?)`;
+
+  db.query(insertEmployeeQuery, [msnv, hoTen, ngaySinh, phoneNumber, email, phongBan], (err) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).send(err);
     }
-    return res.status(200).json({ message: 'Employee added successfully' });
+
+    db.query(insertStaffInfoQuery, [msnv, gender, cccd, position, birthplace, nationality, nation, languages, currentAddress, dateOfJoining], (err) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      db.query(insertLoginQuery, [msnv, username, password], (err) => {
+        if (err) {
+          return res.status(500).send(err);
+        }
+
+        res.status(200).send('Employee added successfully');
+      });
+    });
   });
 });
 

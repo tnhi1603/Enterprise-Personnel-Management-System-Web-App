@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Employee.css';
 
 function EmployeeList() {
@@ -21,12 +21,12 @@ function EmployeeList() {
 
   const filteredEmployees = employees.filter(employee =>
     employee.EmployeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    employee.DepartmentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    employee.Department.toLowerCase().includes(searchTerm.toLowerCase()) ||
     employee.ProjectName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleRowClick = (employeeId) => {
-    navigate(`/employeedetail`);
+    navigate(`/employee/${employeeId}`);
   };
 
   return (
@@ -54,7 +54,7 @@ function EmployeeList() {
             </tr>
           </thead>
           <tbody>
-          {filteredEmployees.map(employee => (
+            {filteredEmployees.map(employee => (
               <tr key={employee.EmployeeID} onClick={() => handleRowClick(employee.EmployeeID)}>
                 <td>{employee.EmployeeName}</td>
                 <td>{employee.Department}</td>
