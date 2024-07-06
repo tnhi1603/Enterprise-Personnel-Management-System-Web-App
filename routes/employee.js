@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const employeeId = req.params.id;
+  const StaffID = req.params.id;
   
   const query = `
     SELECT 
@@ -54,7 +54,7 @@ router.get('/:id', (req, res) => {
     LEFT JOIN Login ON Staff.StaffID = Login.StaffID
     WHERE Staff.StaffID = ?`;
 
-  db.query(query, [employeeId], (error, results) => {
+  db.query(query, [StaffID], (error, results) => {
     if (error) {
       res.status(500).send(error);
     } else if (results.length === 0) {

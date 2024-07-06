@@ -26,7 +26,7 @@ function EmployeeList() {
   );
 
   const handleRowClick = (employeeId) => {
-    navigate(`/employee/${employeeId}`);
+    navigate(`/employeedetail`);
   };
 
   return (

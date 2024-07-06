@@ -19,6 +19,7 @@ import Notification from './components/Notification';
 import NotificationDetail from './components/NotificationDetail';
 import UserInfo from './components/UserInfo';
 import AddNoti from './components/AddNoti';
+import EmployeeDetail from './components/EmployeeDetails';
 import './App.css';
 
 function App() {
@@ -140,6 +141,14 @@ function App() {
           element={
             <ProtectedRoute>
               <UserInfo />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/employeedetail"
+          element={
+            <ProtectedRoute>
+              <EmployeeDetail />
             </ProtectedRoute>
           }
         />
