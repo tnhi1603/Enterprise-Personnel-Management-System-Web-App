@@ -42,19 +42,20 @@
 .status {
   padding: 5px;
   border-radius: 5px;
+  font-size: 12px;
 }
 
 .pending {
   background-color: yellow;
 }
 
-.accepted {
+.approved {
   background-color: green;
   color: white;
 }
 
-.forwarded {
-  background-color: blue;
+.rejected {
+  background-color: red;
   color: white;
 }
 

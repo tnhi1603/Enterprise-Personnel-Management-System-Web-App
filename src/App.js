@@ -59,6 +59,14 @@ function App() {
             }
           />
           <Route
+            path="/requests/:id"
+            element={
+              <ProtectedRoute>
+                <Request />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/interactions"
             element={
               <ProtectedRoute>

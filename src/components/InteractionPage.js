@@ -1,67 +1,68 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import Post from './Post';
 import './InteractionPage.css';
 
-const InteractionPage = () => {
-  const [posts, setPosts] = useState([]);
+const initialPosts = [
+  {
+    id: 1,
+    author: 'User 1',
+    content: 'This is the first post',
+    likes: 0,
+    comments: [],
+    timestamp: new Date().toLocaleString(),
+  },
+  {
+    id: 2,
+    author: 'User 2',
+    content: 'This is the second post',
+    likes: 0,
+    comments: [],
+    timestamp: new Date().toLocaleString(),
+  },
+];
+
+function InteractionPage() {
+  const [posts, setPosts] = useState(initialPosts);
   const [newPostContent, setNewPostContent] = useState('');
-  const [staffId, setStaffId] = useState(1);
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/post');
-      const data = await response.json();
-      setPosts(data);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    }
-  };
 
   const handlePostContentChange = (e) => {
     setNewPostContent(e.target.value);
   };
 
-  const handlePostSubmit = async (e) => {
+  const handlePostSubmit = (e) => {
     e.preventDefault();
     if (newPostContent.trim()) {
-      try {
-        const response = await fetch('http://localhost:3001/api/post', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ staffId, content: newPostContent }),
-        });
-        const newPost = await response.json();
-        fetchPosts(); // Refresh posts after adding new one
-        setNewPostContent('');
-      } catch (error) {
-        console.error('Error creating post:', error);
-      }
+      const newPost = {
+        id: posts.length + 1,
+        author: 'New User', // This can be dynamic based on actual logged-in user data
+        content: newPostContent,
+        likes: 0,
+        comments: [],
+        timestamp: new Date().toLocaleString(),
+      };
+      setPosts([newPost, ...posts]); // Prepend the new post
+      setNewPostContent('');
     }
   };
 
   return (
-    <div className="interaction-page">
-      <form onSubmit={handlePostSubmit} className="post-form">
-        <textarea
-          value={newPostContent}
-          onChange={handlePostContentChange}
-          placeholder="Write your post here..."
-        />
-        <button type="submit">Post</button>
-      </form>
-      <div className="posts">
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+      <div className="interaction-page">
+        <form onSubmit={handlePostSubmit} className="post-form">
+          <textarea
+            value={newPostContent}
+            onChange={handlePostContentChange}
+            placeholder="Write your post here..."
+          />
+          <button type="submit">Post</button>
+        </form>
+        <div className="posts">
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </div>
       </div>
-    </div>
   );
-};
+}
 
 export default InteractionPage;

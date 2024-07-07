@@ -5,19 +5,7 @@ const db = require('../db'); // Adjust the path to your actual db module
 // Get all posts with replies
 router.get('/', (req, res) => {
   const query = `
-    SELECT 
-      p.PostID, p.Post, p.DateTime, s.Username AS PostAuthor,
-      c.ReplyID, c.Reply, r.Username AS ReplyAuthor
-    FROM 
-      Post p
-    JOIN 
-      Staff s ON p.StaffID = s.StaffID
-    LEFT JOIN 
-      Communication c ON p.PostID = c.PostID
-    LEFT JOIN 
-      Staff r ON c.StaffID = r.StaffID
-    ORDER BY 
-      p.DateTime DESC, c.ReplyID ASC
+    SELECT * FROM Post
   `;
   db.query(query, (err, results) => {
     if (err) {
@@ -30,18 +18,11 @@ router.get('/', (req, res) => {
       if (!posts[row.PostID]) {
         posts[row.PostID] = {
           id: row.PostID,
-          author: row.PostAuthor,
+          author: row.StaffID,
           content: row.Post,
           timestamp: row.DateTime,
           comments: []
         };
-      }
-      if (row.ReplyID) {
-        posts[row.PostID].comments.push({
-          id: row.ReplyID,
-          author: row.ReplyAuthor,
-          content: row.Reply
-        });
       }
     });
     res.json(Object.values(posts));
