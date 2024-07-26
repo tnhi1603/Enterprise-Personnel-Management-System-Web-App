@@ -14,6 +14,4 @@ Back-end: Javascript
 
     Sử dụng server tích hợp sẵn của Create React App (CRA) để chạy ứng dụng web với port:3000
 
-Chạy ứng dụng web với lệnh "npm start"
-
 - Deploy: 
